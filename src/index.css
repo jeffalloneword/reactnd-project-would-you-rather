@@ -43,6 +43,11 @@ a {
   text-align: center;
 }
 
+.right {
+  width: 100px;
+  /* TODO: figure out nav right spacing */
+}
+
 .active {
   font-weight: bold;
 }

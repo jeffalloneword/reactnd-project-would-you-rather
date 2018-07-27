@@ -21,6 +21,9 @@ export default function Nav () {
           </NavLink>
         </li>
         <li>
+          <div className='right'></div>
+        </li>
+        <li>
           Hello, Username
           {/* TODO: codify username in nav bar */}
         </li>

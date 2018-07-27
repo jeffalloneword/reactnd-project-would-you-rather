@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
 
 class Dashboard extends Component {
   render() {
     return (
       <div className='myCssClass'>
         Dashboard
+        {/* TODO: show signin page if no authed user */}
       </div>
     )
   }
