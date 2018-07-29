@@ -5,7 +5,7 @@ class Dashboard extends Component {
     return (
       <div className='myCssClass'>
         Dashboard
-        {/* TODO: show signin page if no authed user */}
+        {/* TODO: show signin component if no authed user */}
       </div>
     )
   }
