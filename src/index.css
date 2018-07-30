@@ -10,6 +10,63 @@ a {
   color: #252525;
 }
 
+/* Section for Would You Rather design */
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.signin {
+  border: 3px solid #f1f1f1;
+  width: 60%;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.signin-header {
+  padding: 6px;
+  border: 3px solid #f1f1f1;
+  background-color: #f1f1f1;
+}
+
+img.signin {
+    width: 40%;
+    border-radius: 50%;
+}
+
+button.signin:hover {
+    opacity: 0.8;
+}
+
+select.signin {
+  width: 100%;
+  height: 41px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  font-size: 1em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button.signin {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1em;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+/* End section for Would You Rather design */
+
+
+
 .container {
   max-width: 1000px;
   margin: 0 auto;

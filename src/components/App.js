@@ -8,22 +8,22 @@ import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import Signin from './Signin'
 import Nav from './Nav'
+import Home from './Home'
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
-
   render() {
     return (
       <Router>
         <div>
           <Nav />
           <div>
-              <Route path='/' exact component={Dashboard} />
+              <Route path='/' exact component={Home} />
               <Route path='/leaderboard' component={Leaderboard} />
               <Route path='/new' component={NewQuestion} />
-              <Route path='/signin' component={Dashboard} />
+              <Route path='/signin' component={Home} />
             </div>
         </div>
       </Router>
@@ -31,4 +31,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
