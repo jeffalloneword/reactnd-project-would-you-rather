@@ -62,7 +62,11 @@ button.signin {
     width: 100%;
 }
 
-
+.tiny-avatar {
+  height: 16px;
+  border-radius: 8px;
+  margin: 0;
+}
 /* End section for Would You Rather design */
 
 

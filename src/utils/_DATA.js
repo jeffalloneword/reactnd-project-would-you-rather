@@ -24,7 +24,7 @@ let users = {
   juliagulia: {
     id: 'juliagulia',
     name: 'Julia Gulia',
-    avatarURL: 'https://alloneword.com/images/julia.png',
+    avatarURL: 'https://alloneword.com/images/julia.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

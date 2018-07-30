@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import User from './User'
+import Select from 'react-select'
 
 class Signin extends Component {
   render() {
+    const { users } = this.props
+
+    const userIds = Object.keys(users)
+        .sort((a,b) => users[a].name.localeCompare(users[b].name))
+
     return (
       <div className='signin center'>
         <div className='signin-header'>
@@ -19,10 +24,12 @@ class Signin extends Component {
         <div>
           <select className='signin semi-square'>
             <option value='zero'>Select User</option>
-            {this.props.userIds.map((id) => (
-              <option key={id}>
-                <User id={id}/>
-              </option>
+            {userIds.map((id) => (
+              <option
+                key={id}
+                value={users[id].name}
+              >{users[id].name}</option>
+
             ))}
           </select>
         </div>
@@ -37,9 +44,9 @@ class Signin extends Component {
 }
 
 function mapStateToProps ({ users }) {
+
   return {
-    userIds: Object.keys(users)
-      .sort((a,b) => users[a].name.localeCompare(users[b].name))
+    users: users
   }
 }
 
