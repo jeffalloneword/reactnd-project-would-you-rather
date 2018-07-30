@@ -39,7 +39,7 @@ class Signin extends Component {
 function mapStateToProps ({ users }) {
   return {
     userIds: Object.keys(users)
-      .sort((a,b) => users[a].toLowerCase < users[b].toLowerCase)
+      .sort((a,b) => users[a].name.localeCompare(users[b].name))
   }
 }
 
