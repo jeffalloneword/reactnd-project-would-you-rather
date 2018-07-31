@@ -32,9 +32,9 @@ class Signin extends Component {
         </div>
         <div>
           <Select
-            onChange={options}
             options={options}
             placeholder='Select user...'
+            className='align-left'
           />
         </div>
         <div>

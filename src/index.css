@@ -104,6 +104,10 @@ button.signin {
   text-align: center;
 }
 
+.align-left {
+  text-align: left;
+}
+
 .right {
   width: 100px;
   /* TODO: figure out nav right spacing */
