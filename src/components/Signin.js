@@ -9,6 +9,15 @@ class Signin extends Component {
     const userIds = Object.keys(users)
         .sort((a,b) => users[a].name.localeCompare(users[b].name))
 
+    const options = []
+
+    userIds.map((id) => (
+      options.push({
+        value: id,
+        label: users[id].name
+      })
+    ))
+
     return (
       <div className='signin center'>
         <div className='signin-header'>
@@ -22,16 +31,11 @@ class Signin extends Component {
           />
         </div>
         <div>
-          <select className='signin semi-square'>
-            <option value='zero'>Select User</option>
-            {userIds.map((id) => (
-              <option
-                key={id}
-                value={users[id].name}
-              >{users[id].name}</option>
-
-            ))}
-          </select>
+          <Select
+            onChange={options}
+            options={options}
+            placeholder='Select user...'
+          />
         </div>
         <div>
           <button className='signin semi-square'>
