@@ -89,6 +89,10 @@ button.signin {
   position: relative;
 }
 
+.test {
+  background-image:url(https://alloneword.com/images/jh2018.png);
+}
+
 .btn:hover {
   border-color: rgba(0,0,0,.5);
   text-decoration: none;

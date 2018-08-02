@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Select from 'react-select'
+import { Dropdown } from 'semantic-ui-react'
 
 class Signin extends Component {
   render() {
@@ -14,35 +14,41 @@ class Signin extends Component {
     userIds.map((id) => (
       options.push({
         value: id,
-        label: users[id].name
+        text: users[id].name,
+        image: {avatar: true, src: users[id].avatarURL},
       })
     ))
 
     return (
-      <div className='signin center'>
-        <div className='signin-header'>
-          <div className='container'><strong>Welcome to the Would You Rather App!</strong></div>
-          <div>Please sign in to continue</div>
+      <div>
+        <div className='signin center'>
+          <div className='signin-header'>
+            <div className='container'><strong>Welcome to the Would You Rather App!</strong></div>
+            <div>Please sign in to continue</div>
+          </div>
+          <div className='container'>
+            <img
+              src='https://alloneword.com/images/udacity/QnA.png'
+              className='signin'
+            />
+          </div>
+          <div>
+            <Dropdown
+              placeholder='Select user...'
+              fluid
+              selection
+              options={options}
+              className='align-left'
+            />
+          </div>
+          <div>
+            <button className='signin semi-square' >
+              Sign In
+            </button>
+          </div>
         </div>
-        <div className='container'>
-          <img
-            src='https://alloneword.com/images/udacity/QnA.png'
-            className='signin'
-          />
-        </div>
-        <div>
-          <Select
-            options={options}
-            placeholder='Select user...'
-            className='align-left'
-          />
-        </div>
-        <div>
-          <button className='signin semi-square'>
-            Sign In
-          </button>
-        </div>
-      </div>
+
+    </div>
     )
   }
 }
