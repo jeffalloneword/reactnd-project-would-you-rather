@@ -7,7 +7,6 @@ import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import Nav from './Nav'
-import Home from './Home'
 import Signin from './Signin'
 
 class App extends Component {
@@ -19,7 +18,12 @@ class App extends Component {
       <Router>
         <div>
           {this.props.loading === true ? (
-            <Route path="/" component={Signin} />
+            <div>
+              <Route path="/" component={Signin} />
+              <Route path="/leaderboard" component={Signin} />
+              <Route path="/new" component={Signin} />
+              <Route path="/signin" component={Signin} />
+            </div>
           ) : (
             <div>
               <Nav />
