@@ -1,14 +1,29 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class Dashboard extends Component {
   render() {
     return (
-      <div className='myCssClass'>
-        Dashboard
-        {/* TODO: show signin component if no authed user */}
+      <div>
+        <h3 className="center">All Questions</h3>
+        <ul className="dashboard-list">
+          {this.props.questionIds.map(id => (
+            <li key={id}>
+              <div>QUESTION ID: {id}</div>
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }
 }
 
-export default Dashboard
+function mapStateToProps({ questions }) {
+  return {
+    questionIds: Object.keys(questions).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp,
+    ),
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)
