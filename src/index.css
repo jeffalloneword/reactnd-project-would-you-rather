@@ -82,8 +82,15 @@ button.signin {
   position: relative;
 }
 
+.question-container {
+  padding: 10px;
+  display: flex;
+  border: 1px solid #dad7d7;
+  border-radius: 0px 0px 3px 3px;
+}
+
 .question-header {
-  width: 50%;
+  width: 40%;
   max-width: 590px;
   padding: 10px;
   display: flex;
@@ -95,7 +102,7 @@ button.signin {
   font-weight: bold;
 }
 .question {
-  width: 50%;
+  width: 40%;
   max-width: 590px;
   padding: 10px;
   display: flex;
@@ -106,12 +113,7 @@ button.signin {
 }
 
 .vertical-bar {
-  width: 1px;
-  height: 80%;
-  padding: 0px;
-  display: flex;
-  margin: 0 20% auto;
-  border: 0px;
+  margin: 0 20px 0 10px;
 }
 
 .btn:hover {
