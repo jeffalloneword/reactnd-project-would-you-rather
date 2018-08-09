@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import graybar from './images/dad7d7-pixel.png'
 
 class Question extends Component {
   render() {
-    console.log(this.props)
-    return <div className="question">Question</div>
+    const { question } = this.props
+
+    if (question === null) {
+      return <p>This Question doesn't exist.</p>
+    }
+
+    const { name, avatar, optionOneText } = question
+
+    return (
+      <div>
+        <div className="question-header">{`${name} asks:`}</div>
+        <div className="question">
+          <img src={avatar} alt={''} className="avatar" />
+          <div className="vertical-bar" />
+          <div>Would you rather</div>
+        </div>
+      </div>
+    )
   }
 }
 

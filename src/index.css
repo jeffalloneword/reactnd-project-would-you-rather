@@ -62,11 +62,6 @@ button.signin {
   width: 100%;
 }
 
-.tiny-avatar {
-  height: 16px;
-  border-radius: 8px;
-  margin: 0;
-}
 /* End section for Would You Rather design */
 
 .container {
@@ -87,15 +82,36 @@ button.signin {
   position: relative;
 }
 
-.question {
-  width: 60%;
+.question-header {
+  width: 50%;
   max-width: 590px;
   padding: 10px;
   display: flex;
   margin: 0 auto;
   border: 1px solid #dad7d7;
-  border-radius: 3px;
+  border-bottom: 0px;
+  border-radius: 3px 3px 0px 0px;
   cursor: pointer;
+  font-weight: bold;
+}
+.question {
+  width: 50%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 0px 0px 3px 3px;
+  cursor: pointer;
+}
+
+.vertical-bar {
+  width: 1px;
+  height: 80%;
+  padding: 0px;
+  display: flex;
+  margin: 0 20% auto;
+  border: 0px;
 }
 
 .btn:hover {
@@ -114,6 +130,10 @@ button.signin {
 }
 
 .align-left {
+  text-align: left;
+}
+
+.align-right {
   text-align: left;
 }
 
@@ -147,9 +167,17 @@ li {
   text-decoration: none;
 }
 
+.tiny-avatar {
+  height: 16px;
+  border-radius: 8px;
+  border: 1px solid #dad7d7;
+  margin: 0;
+}
+
 .avatar {
   height: 50px;
   border-radius: 25px;
+  border: 1px solid #dad7d7;
   margin: 10px;
 }
 
