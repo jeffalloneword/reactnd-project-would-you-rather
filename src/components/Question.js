@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import graybar from '../images/dad7d7-pixel.png'
+import graypixel from '../../public/images/dad7d7-pixel.png'
 
 class Question extends Component {
   render() {
@@ -18,8 +18,14 @@ class Question extends Component {
         <div className="question-header">{`${name} asks:`}</div>
         <div className="question">
           <img src={avatar} alt={''} className="avatar" />
-          <img src={graybar} className="vertical-bar" />
-          <div>Would you rather</div>
+          <img src={graypixel} alt={''} className="vertical-bar" />
+          <div>
+            <span className="option-header">Would you rather</span>
+            <span className="option-text">
+              <p>{`...${optionOneText}...`}</p>
+            </span>
+            <button className="poll semi-square">Show Poll</button>
+          </div>
         </div>
       </div>
     )
