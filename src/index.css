@@ -175,25 +175,31 @@ button.poll {
   font-weight: bold;
 }
 
-.nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  text-decoration: none;
-}
-
-.nav li:first-child {
-  padding-left: 0;
-}
-
 ul {
-  padding-left: 0;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 li {
   list-style-type: none;
   padding: 10px;
   text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.nav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  text-decoration: none;
+}
+
+.nav li:first-child {
+  padding-left: 0;
 }
 
 .tiny-avatar {
@@ -207,7 +213,7 @@ li {
   height: 50px;
   border-radius: 25px;
   border: 1px solid #dad7d7;
-  margin: 10px;
+  margin: auto;
 }
 
 .tweet-info {
