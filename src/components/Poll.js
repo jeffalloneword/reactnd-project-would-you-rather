@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../../public/images/dad7d7-pixel.png'
 
-class Question extends Component {
+class poll extends Component {
   render() {
     const { question } = this.props
 
@@ -25,7 +25,7 @@ class Question extends Component {
               <p>{`...${optionOneText}...`}</p>
             </span>
             <div className="question-right">
-              <button className="question semi-square">Show Poll</button>
+              <button className="question semi-square">Show question</button>
             </div>
           </div>
         </div>
@@ -34,7 +34,8 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }, props) {
+  const { id } = props.match.params
   const question = questions[id]
 
   return {
@@ -44,4 +45,4 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
       : null,
   }
 }
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(poll)

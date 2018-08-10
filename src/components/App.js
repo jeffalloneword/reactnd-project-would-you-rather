@@ -8,6 +8,7 @@ import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import Nav from './Nav'
 import Signin from './Signin'
+import Poll from './Poll'
 
 class App extends Component {
   componentDidMount() {
@@ -20,9 +21,6 @@ class App extends Component {
           {this.props.loading === true ? (
             <div>
               <Route path="/" component={Signin} />
-              <Route path="/leaderboard" component={Signin} />
-              <Route path="/new" component={Signin} />
-              <Route path="/signin" component={Signin} />
             </div>
           ) : (
             <div>
@@ -30,6 +28,7 @@ class App extends Component {
               <Route path="/" exact component={Dashboard} />
               <Route path="/leaderboard" component={Leaderboard} />
               <Route path="/new" component={NewQuestion} />
+              <Route path="/poll/:id" exact component={Poll} />
               <Route path="/signin" component={Signin} />
             </div>
           )}

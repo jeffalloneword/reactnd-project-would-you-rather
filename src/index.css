@@ -62,7 +62,7 @@ button.signin {
   width: 100%;
 }
 
-button.poll {
+button.question {
   background-color: #4caf50;
   color: white;
   font-size: 0.8em;
@@ -110,7 +110,7 @@ button.poll {
 
 .question-header {
   width: 40%;
-  max-width: 590px;
+  max-width: 480px;
   padding: 10px;
   margin: 0 auto;
   border: 1px solid #dad7d7;
@@ -124,6 +124,7 @@ button.poll {
   display: flex;
   flex-flow: row;
   width: 40%;
+  max-width: 480px;
   padding: 10px;
   margin: 0 auto;
   border: 1px solid #dad7d7;

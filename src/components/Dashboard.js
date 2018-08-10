@@ -6,7 +6,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h3 className="center">All Questions</h3>
+        <div className="center">
+          <span>Unanswered Questions</span> | <span>Answered Questions</span>
+        </div>
         <ul className="dashboard-list">
           {this.props.questionIds.map(id => (
             <li key={id}>
