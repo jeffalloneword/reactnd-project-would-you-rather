@@ -67,10 +67,10 @@ button.poll {
   color: white;
   font-size: 0.8em;
   padding: 5px;
-  margin: 16px 0;
+  margin: 16px auto;
   border: none;
   cursor: pointer;
-  width: 80px;
+  width: 100%;
 }
 
 /* End section for Would You Rather design */
@@ -104,17 +104,14 @@ button.poll {
 }
 
 .question-container {
-  padding: 10px;
   display: flex;
-  border: 1px solid #dad7d7;
-  border-radius: 0px 0px 3px 3px;
+  flex-flow: column;
 }
 
 .question-header {
   width: 40%;
   max-width: 590px;
   padding: 10px;
-  display: flex;
   margin: 0 auto;
   border: 1px solid #dad7d7;
   border-bottom: 0px;
@@ -122,15 +119,24 @@ button.poll {
   cursor: pointer;
   font-weight: bold;
 }
-.question {
-  width: 40%;
-  max-width: 590px;
-  padding: 10px;
+
+.question-body {
   display: flex;
+  flex-flow: row;
+  width: 40%;
+  padding: 10px;
   margin: 0 auto;
   border: 1px solid #dad7d7;
   border-radius: 0px 0px 3px 3px;
   cursor: pointer;
+}
+
+.question-left {
+  flex: 1;
+}
+
+.question-right {
+  flex: 2;
 }
 
 .vertical-bar {

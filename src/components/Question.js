@@ -14,17 +14,19 @@ class Question extends Component {
     const { name, avatar, optionOneText } = question
 
     return (
-      <div>
+      <div className="question-container">
         <div className="question-header">{`${name} asks:`}</div>
-        <div className="question">
+        <div className="question-body">
           <img src={avatar} alt={''} className="avatar" />
           <img src={graypixel} alt={''} className="vertical-bar" />
-          <div>
+          <div className="question-left">
             <span className="option-header">Would you rather</span>
             <span className="option-text">
               <p>{`...${optionOneText}...`}</p>
             </span>
-            <button className="poll semi-square">Show Poll</button>
+            <div className="question-right">
+              <button className="poll semi-square">Show Poll</button>
+            </div>
           </div>
         </div>
       </div>
