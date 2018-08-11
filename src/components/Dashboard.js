@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
 import { NavLink } from 'react-router-dom'
+import graypixel from '../../public/images/dad7d7-pixel.png'
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
         <div className="center">
-          <button>Unanswered Questions</button>
-          <button>Answered Questions</button>
+          <button className="dashboard-button">Unanswered Questions</button>
+          <img src={graypixel} alt={''} className="vertical-bar-button" />
+          <button className="dashboard-button">Answered Questions</button>
         </div>
         <ul className="dashboard-list">
           {this.props.questionIds.map(id => (
