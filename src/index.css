@@ -73,7 +73,14 @@ button.question {
   width: 100%;
 }
 
-/* End section for Would You Rather design */
+.list-on {
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.list-off {
+  color: #dad7d7;
+}
 
 .container {
   max-width: 1000px;
@@ -165,11 +172,6 @@ button.question {
 
 .align-right {
   text-align: left;
-}
-
-.right {
-  width: 100px;
-  /* TODO: figure out nav right spacing */
 }
 
 .active {
