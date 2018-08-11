@@ -8,13 +8,8 @@ class Dashboard extends Component {
     return (
       <div>
         <div className="center">
-          <NavLink to="/unansweredquestions" activeClassName="list-on">
-            Unanswered Questions
-          </NavLink>
-          <span> | </span>
-          <NavLink to="/answeredquestions" activeClassName="list-on">
-            Answered Questions
-          </NavLink>
+          <button>Unanswered Questions</button>
+          <button>Answered Questions</button>
         </div>
         <ul className="dashboard-list">
           {this.props.questionIds.map(id => (
@@ -29,10 +24,6 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ questions }, props) {
-  const { QuestionType } = props.match.params
-
-  console.log('QuestionType', QuestionType)
-
   return {
     questionIds: Object.keys(questions).sort(
       (a, b) => questions[b].timestamp - questions[a].timestamp,
