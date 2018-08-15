@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import { NavLink } from 'react-router-dom'
 import graypixel from '../../public/images/dad7d7-pixel.png'
 
 class Dashboard extends Component {
