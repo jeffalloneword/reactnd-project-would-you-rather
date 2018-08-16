@@ -26,7 +26,7 @@ class Leaderboard extends Component {
 
     return (
       <div>
-        <ul className="dashboard-list">
+        <ul className="question-container">
           {leaders
             .sort(
               (a, b) =>
@@ -35,14 +35,25 @@ class Leaderboard extends Component {
                 (a.answeredQuestions + a.createdQuestions),
             )
             .map(leader => (
-              <li key={leader.username}>
-                <div>{leader.username}</div>
-                <div>{leader.realname}</div>
-                <div>{leader.imageURL}</div>
-                <div>{leader.answeredQuestions}</div>
-                <div>{leader.createdQuestions}</div>
-                <div>{leader.answeredQuestions + leader.createdQuestions}</div>
-              </li>
+              <div>
+                <li key={leader.username}>
+                  <div className="leaderboard-body">
+                    <div className="leaderboard-left">
+                      <img src={leader.imageURL} alt={''} className="avatar" />
+                    </div>
+                    <div className="v1" />
+                    <div className="leaderboard-middle">
+                      <div>{leader.realname}</div>
+                      <div>{leader.answeredQuestions}</div>
+                      <div>{leader.createdQuestions}</div>
+                    </div>
+                    <div className="v1" />
+                    <div className="leaderboard-right">
+                      {leader.answeredQuestions + leader.createdQuestions}
+                    </div>
+                  </div>
+                </li>
+              </div>
             ))}
         </ul>
       </div>

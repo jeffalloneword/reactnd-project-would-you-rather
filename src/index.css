@@ -157,6 +157,37 @@ button.question {
   flex: 2;
 }
 
+.leaderboard-body {
+  display: flex;
+  flex-flow: row;
+  width: 50%;
+  max-width: 480px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 0px 0px 3px 3px;
+  cursor: pointer;
+}
+
+.v1 {
+  flex: 1;
+  border-left: 1px solid #dad7d7;
+  height: 80%;
+  width: 1px;
+}
+
+.leaderboard-left {
+  flex: 1;
+  flex-flow: row;
+}
+
+.leaderboard-middle {
+  flex: 2;
+}
+.leaderboard-right {
+  flex: 1;
+}
+
 .vertical-bar {
   margin: 0 20px 0 10px;
 }
