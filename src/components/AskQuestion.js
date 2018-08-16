@@ -12,18 +12,7 @@ class AskQuestion extends Component {
       return <p>This Question doesn't exist.</p>
     }
 
-    const {
-      name,
-      avatar,
-      optionOneText,
-      optionTwoText,
-      optionOneVotes,
-      optionTwoVotes,
-    } = question
-
-    const optionOneVotesTotal = optionOneVotes.length
-    const optionTwoVotesTotal = optionTwoVotes.length
-    const totalVotes = optionOneVotesTotal + optionTwoVotesTotal
+    const { name, avatar, optionOneText, optionTwoText } = question
 
     return (
       <div className="question-container">
@@ -34,13 +23,37 @@ class AskQuestion extends Component {
           <div className="question-right">
             <span className="option-header">Would you rather</span>
 
-            <span className="option-text">
-              <p>{`${optionOneText}`}</p>
-              <p>{`${optionOneVotesTotal} out of ${totalVotes} votes`}</p>
-
-              <p>{`${optionTwoText}`}</p>
-              <p>{`${optionTwoVotesTotal} out of ${totalVotes} votes`}</p>
-            </span>
+            <form>
+              <span className="option-text">
+                <div className="radio">
+                  <label for="option-one">
+                    <input
+                      id="option-one"
+                      type="radio"
+                      value="option1"
+                      name="option-radios"
+                    />
+                    {`${optionOneText}`}
+                  </label>
+                </div>
+                <div className="radio">
+                  <label for="option-two">
+                    <input
+                      id="option-two"
+                      type="radio"
+                      value="option2"
+                      name="option-radios"
+                    />
+                    {`${optionTwoText}`}
+                  </label>
+                </div>
+                <p />
+                <p />
+              </span>
+              <div className="question-right">
+                <button className="question semi-square">Submit</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
