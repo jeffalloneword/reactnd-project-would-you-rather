@@ -52,7 +52,7 @@ select.signin {
 }
 
 button.signin {
-  background-color: #4caf50;
+  background-color: #51cea6;
   color: white;
   font-size: 1em;
   padding: 14px 20px;
@@ -159,7 +159,8 @@ button.question {
 
 .leaderboard-body {
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
+  align-items: center;
   width: 50%;
   max-width: 480px;
   padding: 10px;
@@ -167,25 +168,80 @@ button.question {
   border: 1px solid #dad7d7;
   border-radius: 0px 0px 3px 3px;
   cursor: pointer;
+  position: relative;
 }
 
 .v1 {
-  flex: 1;
-  border-left: 1px solid #dad7d7;
-  height: 80%;
-  width: 1px;
+  flex: 1 1 1px;
+  background-color: #dad7d7;
+  height: 50px;
 }
 
 .leaderboard-left {
-  flex: 1;
-  flex-flow: row;
+  flex: 0 1 20%;
+  align-items: center;
+  margin-right: 5px;
 }
 
 .leaderboard-middle {
-  flex: 2;
+  flex: 1 1 58%;
+  margin: 0px 5px 0px 5px;
 }
 .leaderboard-right {
-  flex: 1;
+  flex: 1 1 20%;
+  margin-right: -5px;
+  margin-left: 5px;
+  text-align: center;
+}
+
+.count-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+.score-circle {
+  background: #51cea6;
+  color: #fff;
+  padding: 5px 5px;
+  border-radius: 50%;
+  font-size: 1em;
+  width: 30px;
+  margin: auto;
+}
+
+.triangle-gold {
+  width: 0;
+  height: 0;
+  border-top: 20px solid #cebe6bbb;
+  border-right: 20px solid transparent;
+  position: absolute;
+  margin-left: -10px;
+  margin-top: -10px;
+  align-self: baseline;
+}
+
+.triangle-silver {
+  width: 0;
+  height: 0;
+  border-top: 20px solid #c0c0c0bb;
+  border-right: 20px solid transparent;
+  position: absolute;
+  margin-left: -10px;
+  margin-top: -10px;
+  align-self: baseline;
+}
+
+.triangle-bronze {
+  width: 0;
+  height: 0;
+  border-top: 20px solid #91704fbb;
+  border-right: 20px solid transparent;
+  position: absolute;
+  margin-left: -10px;
+  margin-top: -10px;
+  align-self: baseline;
 }
 
 .vertical-bar {

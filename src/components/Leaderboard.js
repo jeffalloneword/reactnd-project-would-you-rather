@@ -26,7 +26,7 @@ class Leaderboard extends Component {
 
     return (
       <div>
-        <ul className="question-container">
+        <ul>
           {leaders
             .sort(
               (a, b) =>
@@ -34,22 +34,36 @@ class Leaderboard extends Component {
                 b.createdQuestions -
                 (a.answeredQuestions + a.createdQuestions),
             )
-            .map(leader => (
+            .map((leader, index) => (
               <div>
                 <li key={leader.username}>
                   <div className="leaderboard-body">
+                    {index === 0 && <div className="triangle-gold" />}
+                    {index === 1 && <div className="triangle-silver" />}
+                    {index > 1 && <div className="triangle-bronze" />}
                     <div className="leaderboard-left">
                       <img src={leader.imageURL} alt={''} className="avatar" />
                     </div>
                     <div className="v1" />
                     <div className="leaderboard-middle">
-                      <div>{leader.realname}</div>
-                      <div>{leader.answeredQuestions}</div>
-                      <div>{leader.createdQuestions}</div>
+                      <div>
+                        <h4>{leader.realname}</h4>
+                      </div>
+                      <div className="count-row">
+                        <div>Answered questions</div>
+                        <div>{leader.answeredQuestions}</div>
+                      </div>
+                      <div className="count-row">
+                        <div>Created questions</div>
+                        <div>{leader.createdQuestions}</div>
+                      </div>
                     </div>
                     <div className="v1" />
                     <div className="leaderboard-right">
-                      {leader.answeredQuestions + leader.createdQuestions}
+                      <div>Score</div>
+                      <div className="score-circle">
+                        {leader.answeredQuestions + leader.createdQuestions}
+                      </div>
                     </div>
                   </div>
                 </li>

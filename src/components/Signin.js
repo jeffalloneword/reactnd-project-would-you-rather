@@ -6,57 +6,57 @@ class Signin extends Component {
   render() {
     const { users } = this.props
 
-    const userIds = Object.keys(users)
-        .sort((a,b) => users[a].name.localeCompare(users[b].name))
+    const userIds = Object.keys(users).sort((a, b) =>
+      users[a].name.localeCompare(users[b].name),
+    )
 
     const options = []
 
-    userIds.map((id) => (
+    userIds.map(id =>
       options.push({
         value: id,
         text: users[id].name,
-        image: {avatar: true, src: users[id].avatarURL},
-      })
-    ))
+        image: { avatar: true, src: users[id].avatarURL },
+      }),
+    )
 
     return (
       <div>
-        <div className='signin center'>
-          <div className='signin-header'>
-            <div className='container'><strong>Welcome to the Would You Rather App!</strong></div>
+        <div className="signin center">
+          <div className="signin-header">
+            <div className="container">
+              <strong>Welcome to the Would You Rather App!</strong>
+            </div>
             <div>Please sign in to continue</div>
           </div>
-          <div className='container'>
+          <div className="container">
             <img
-              src='https://alloneword.com/images/udacity/QnA.png'
-              className='signin'
+              src="https://alloneword.com/images/udacity/QnA.png"
+              className="signin"
             />
           </div>
           <div>
             <Dropdown
-              placeholder='Select user...'
+              placeholder="Select user..."
               fluid
               selection
+              scrolling
               options={options}
-              className='align-left'
+              className="align-left"
             />
           </div>
           <div>
-            <button className='signin semi-square' >
-              Sign In
-            </button>
+            <button className="signin semi-square">Sign In</button>
           </div>
         </div>
-
-    </div>
+      </div>
     )
   }
 }
 
-function mapStateToProps ({ users }) {
-
+function mapStateToProps({ users }) {
   return {
-    users: users
+    users: users,
   }
 }
 
