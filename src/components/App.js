@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
@@ -10,6 +10,19 @@ import Leaderboard from './Leaderboard'
 import Nav from './Nav'
 import Signin from './Signin'
 import Poll from './Poll'
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      pageAuth.isAuthenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/signin" />
+      )
+    }
+  />
+)
 
 class App extends Component {
   componentDidMount() {
@@ -28,9 +41,13 @@ class App extends Component {
               <Nav />
               <Route exact path="/" component={Dashboard} />
               <Route path="/leaderboard" component={Leaderboard} />
-              <Route path="/new" component={NewQuestion} />
+              <PrivateRoute path="/new" component={NewQuestion} />
               <Route exact path="/poll/:id" component={Poll} />
-              <Route exact path="/askquestion/:id" component={AskQuestion} />
+              <PrivateRoute
+                exact
+                path="/askquestion/:id"
+                component={AskQuestion}
+              />
               <Route path="/signin" component={Signin} />
             </div>
           )}
