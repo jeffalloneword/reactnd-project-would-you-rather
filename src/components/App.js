@@ -11,45 +11,45 @@ import Nav from './Nav'
 import Signin from './Signin'
 import Poll from './Poll'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      pageAuth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/signin" />
-      )
-    }
-  />
-)
-
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
+
   render() {
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={props =>
+          this.props.isAuthed === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to="/signin" />
+          )
+        }
+      />
+    )
+    console.log('authedUser1: ', this.props.authedUser)
+    console.log('isAuthed: ', this.props.isAuthed)
+
     return (
       <Router>
         <div>
-          {this.props.loading === true ? (
-            <div>
-              <Route path="/" component={Signin} />
-            </div>
-          ) : (
-            <div>
-              <Nav />
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/leaderboard" component={Leaderboard} />
-              <PrivateRoute path="/new" component={NewQuestion} />
-              <Route exact path="/poll/:id" component={Poll} />
-              <PrivateRoute
-                exact
-                path="/askquestion/:id"
-                component={AskQuestion}
-              />
-              <Route path="/signin" component={Signin} />
-            </div>
+          <div>
+            <Nav />
+          </div>
+          <div>
+            <Route exact path="/" component={Dashboard} />
+            <PrivateRoute path="/leaderboard" component={Leaderboard} />
+            <PrivateRoute path="/new" component={NewQuestion} />
+            <Route exact path="/poll/:id" component={Poll} />
+            <PrivateRoute
+              exact
+              path="/askquestion/:id"
+              component={AskQuestion}
+            />
+            <Route path="/signin" component={Signin} />
+          </div>
           )}
         </div>
       </Router>
@@ -58,8 +58,11 @@ class App extends Component {
 }
 
 function mapStateToProps({ authedUser }) {
+  console.log('authedUser2: ', authedUser.length)
+
   return {
-    loading: authedUser === null,
+    isAuthed: authedUser !== '',
+    authedUser: authedUser,
   }
 }
 

@@ -7,16 +7,11 @@ export function setAuthedUser(id) {
   }
 }
 
-export function handleSetAuthedUser(text) {
-  return (dispatch, getState) => {
-    const { authedUser } = getState()
+export const GET_AUTHED_USER = 'GET_AUTHED_USER'
 
-    dispatch(showLoading())
-
-    return userID({
-      text,
-    })
-      .then(tweet => dispatch(addTweet(tweet)))
-      .then(() => dispatch(hideLoading()))
+export function getAuthedUser(authedUser) {
+  return {
+    type: GET_AUTHED_USER,
+    authedUser,
   }
 }
