@@ -50,7 +50,6 @@ class App extends Component {
             />
             <Route path="/signin" component={Signin} />
           </div>
-          )}
         </div>
       </Router>
     )

@@ -51,6 +51,7 @@ class Signin extends Component {
             <img
               src="https://alloneword.com/images/udacity/QnA.png"
               className="signin"
+              alt=""
             />
           </div>
           <div>
