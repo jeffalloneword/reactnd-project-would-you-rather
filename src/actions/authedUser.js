@@ -7,6 +7,12 @@ export function setAuthedUser(id) {
   }
 }
 
+export function handleSetAuthedUser(info) {
+  return dispatch => {
+    dispatch(setAuthedUser(info))
+  }
+}
+
 export const GET_AUTHED_USER = 'GET_AUTHED_USER'
 
 export function getAuthedUser(authedUser) {

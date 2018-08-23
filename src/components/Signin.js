@@ -1,22 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Dropdown } from 'semantic-ui-react'
-
-const pageAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  },
-}
+import { handleSetAuthedUser } from '../actions/authedUser'
 
 class Signin extends Component {
-  login = () => {
-    pageAuth.authenticate(() => {})
+  state = {
+    id: '',
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+
+    const { id } = this.state
+    const { dispatch } = this.props
+
+    dispatch(handleSetAuthedUser(id))
+
+    this.setState(() => ({
+      id: '',
+    }))
   }
 
   render() {
