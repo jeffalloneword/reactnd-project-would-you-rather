@@ -9,7 +9,6 @@ class NewQuestion extends Component {
     e.persist()
     const optionKey = e.target.name
     const optionValue = e.target.value
-    console.log('input: ', optionKey, optionValue)
     this.setState({ [optionKey]: optionValue })
   }
   handleSubmit = e => {
@@ -19,8 +18,6 @@ class NewQuestion extends Component {
 
     // todo: add question to store
 
-    console.log('New Question: ', this.state)
-
     this.setState(() => ({
       textOptionOne: '',
       textOptionTwo: '',
@@ -28,7 +25,6 @@ class NewQuestion extends Component {
   }
   render() {
     const { textOptionOne, textOptionTwo } = this.state
-    console.log('render: ', textOptionOne, textOptionTwo)
 
     return (
       <div className="new-question">

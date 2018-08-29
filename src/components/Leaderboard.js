@@ -12,8 +12,6 @@ class Leaderboard extends Component {
 
     const leaders = []
 
-    console.log('leaders: ', leaders)
-
     userIds.map(id =>
       leaders.push({
         username: id,

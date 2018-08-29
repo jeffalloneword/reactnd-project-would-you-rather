@@ -64,7 +64,6 @@ class AskQuestion extends Component {
 function mapStateToProps({ authedUser, users, questions }, props) {
   const { id } = props.match.params
   const question = questions[id]
-  console.log('id: ', id)
   return {
     authedUser,
     question: question
