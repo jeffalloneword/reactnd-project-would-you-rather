@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import graypixel from '../../public/images/dad7d7-pixel.png'
+import graypixel from '../images/dad7d7-pixel.png'
 
 class Dashboard extends Component {
   render() {

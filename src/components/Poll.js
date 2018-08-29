@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
-import graypixel from '../../public/images/dad7d7-pixel.png'
+import graypixel from '../images/dad7d7-pixel.png'
 
 class AskQuestion extends Component {
   render() {

@@ -19,7 +19,7 @@ const pageAuth = {
   },
   signout(cb) {
     this.isAuthenticated = false
-    setTimeout(cd, 100)
+    setTimeout(cb, 100)
   },
 }
 
