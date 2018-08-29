@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import graypixel from '../../public/images/dad7d7-pixel.png'
+import graypixel from '../images/dad7d7-pixel.png'
 
 class Question extends Component {
   render() {
