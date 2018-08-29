@@ -28,14 +28,19 @@ class Signin extends Component {
     dispatch(handleSetAuthedUser(id))
 
     this.setState(() => ({
-      toHome: id ? false : true,
+      toHome: id ? true : false,
       id: '',
     }))
+
+    console.log('lastID: ', id)
   }
 
   render() {
-    const { users, toHome } = this.props
+    const { users } = this.props
+    const { toHome } =this.state
+
     console.log('toHome: ', toHome)
+
     if (toHome === true) {
       return <Redirect to="/" />
     }
