@@ -1,6 +1,7 @@
 import { RECEIVE_QUESTIONS } from '../actions/questions'
 
 export default function questions(state = {}, action) {
+  console.log('action', action)
   switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {
