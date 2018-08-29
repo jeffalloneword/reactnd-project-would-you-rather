@@ -1,10 +1,44 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Dropdown } from 'semantic-ui-react'
+import { handleSetAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom'
 
 class Signin extends Component {
+  state = {
+    id: '',
+    toHome: false,
+  }
+
+  handleChange = (e, { value }) => {
+    const id = value
+    console.log('handleChange: ', id)
+    this.setState(() => ({
+      id,
+    }))
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+
+    const id = this.state
+    console.log('loginUserID: ', id)
+    const { dispatch } = this.props
+
+    dispatch(handleSetAuthedUser(id))
+
+    this.setState(() => ({
+      toHome: id ? false : true,
+      id: '',
+    }))
+  }
+
   render() {
-    const { users } = this.props
+    const { users, toHome } = this.props
+    console.log('toHome: ', toHome)
+    if (toHome === true) {
+      return <Redirect to="/" />
+    }
 
     const userIds = Object.keys(users).sort((a, b) =>
       users[a].name.localeCompare(users[b].name),
@@ -20,6 +54,8 @@ class Signin extends Component {
       }),
     )
 
+    console.log('options: ', options)
+
     return (
       <div>
         <div className="signin center">
@@ -33,21 +69,25 @@ class Signin extends Component {
             <img
               src="https://alloneword.com/images/udacity/QnA.png"
               className="signin"
+              alt=""
             />
           </div>
-          <div>
-            <Dropdown
-              placeholder="Select user..."
-              fluid
-              selection
-              scrolling
-              options={options}
-              className="align-left"
-            />
-          </div>
-          <div>
-            <button className="signin semi-square">Sign In</button>
-          </div>
+          <form className="new-tweet" onSubmit={this.handleSubmit}>
+            <div>
+              <Dropdown
+                placeholder="Select user..."
+                fluid
+                selection
+                scrolling
+                options={options}
+                className="align-left"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <button className="signin semi-square">Sign In</button>
+            </div>
+          </form>
         </div>
       </div>
     )

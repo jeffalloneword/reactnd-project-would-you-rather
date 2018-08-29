@@ -70,7 +70,7 @@ button.question {
   margin: 16px auto;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 60%;
 }
 
 .list-on {
@@ -126,7 +126,7 @@ button.question {
 }
 
 .question-header {
-  width: 40%;
+  width: 50%;
   max-width: 480px;
   padding: 10px;
   margin: 0 auto;
@@ -140,7 +140,7 @@ button.question {
 .question-body {
   display: flex;
   flex-flow: row;
-  width: 40%;
+  width: 50%;
   max-width: 480px;
   padding: 10px;
   margin: 0 auto;
