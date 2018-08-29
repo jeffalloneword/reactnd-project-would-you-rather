@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default function Nav() {
+
+class Nav extends Component {
+  render () {
+
+    const { users } = this.props
+
+
+
+/*
+  const { users, authedUser } = this.props
+  let navbarUserName = '';
+
+
+  if (authedUser != '') {
+    navbarUserName = users[authedUser].name
+  } else {
+    navbarUserName = ''
+  }
+*/
+
+
+
   return (
     <nav className="nav">
       <div>
@@ -39,4 +61,13 @@ export default function Nav() {
       </div>
     </nav>
   )
+  }
 }
+
+function mapStateToProps({ users }) {
+  return {
+    users: users,
+  }
+}
+
+export default connect(mapStateToProps)(Nav)

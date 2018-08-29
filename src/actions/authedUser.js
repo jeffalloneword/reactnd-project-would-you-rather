@@ -12,12 +12,3 @@ export function handleSetAuthedUser(info) {
     dispatch(setAuthedUser(info))
   }
 }
-
-export const GET_AUTHED_USER = 'GET_AUTHED_USER'
-
-export function getAuthedUser(authedUser) {
-  return {
-    type: GET_AUTHED_USER,
-    authedUser,
-  }
-}
