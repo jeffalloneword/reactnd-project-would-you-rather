@@ -5,16 +5,27 @@ import { handleSetAuthedUser } from '../actions/authedUser'
 
 
 class Nav extends Component {
+  state = {
+    isSignedIn: false
+  }
+
 
   handleSignInOut =  () => {
     const { dispatch } = this.props
-    this.isSignedIn
+    const { isSignedIn } = this.state
+    isSignedIn
       ? (
           false,
           this.navbarUserName = '',
-          dispatch(handleSetAuthedUser(''))
+          dispatch(handleSetAuthedUser('')),
+          this.setState(() => ({
+            isSignedIn: false
+          }))
         )
-      : true
+      : ( this.setState(() => ({
+            isSignedIn: true
+          }))
+        )
 
     console.log('handleSignOut: ', this.navbarUserName, this.isSignedIn)
   }
@@ -22,9 +33,10 @@ class Nav extends Component {
   render () {
 
   const { user } = this.props
+  const { isSignedIn } = this.state
 
   let navbarUserName = user ? `Hello, ${user.name}` : ''
-  const isSignedIn = user ? true : false
+
 
   console.log('navbarUserName: ', navbarUserName, isSignedIn)
 
