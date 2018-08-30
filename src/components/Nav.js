@@ -6,22 +6,14 @@ import { connect } from 'react-redux'
 class Nav extends Component {
   render () {
 
-    const { users } = this.props
+  const { user } = this.props
+  let navbarUserName = ''
 
+  console.log('authedUser-1A: ', user)
+  //console.log('id-name: ', users[0].name)
+  navbarUserName = user ? user.name : ' '
 
-
-/*
-  const { users, authedUser } = this.props
-  let navbarUserName = '';
-
-
-  if (authedUser != '') {
-    navbarUserName = users[authedUser].name
-  } else {
-    navbarUserName = ''
-  }
-*/
-
+  console.log('navbarUserName: ', navbarUserName)
 
 
   return (
@@ -64,9 +56,15 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ authedUser, users }) {
+  console.log('mstp-props: ', authedUser, users)
+  let userID = Object.values(authedUser)
+  userID = userID[0]
+  const user = users[userID]
+  console.log('user: ', user)
   return {
-    users: users,
+    userID,
+    user,
   }
 }
 

@@ -1,14 +1,14 @@
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 
-export function setAuthedUser(id) {
+export function setAuthedUser(userid) {
   return {
     type: SET_AUTHED_USER,
-    id,
+    userid,
   }
 }
 
-export function handleSetAuthedUser(info) {
+export function handleSetAuthedUser(userid) {
   return dispatch => {
-    dispatch(setAuthedUser(info))
+    dispatch(setAuthedUser(userid))
   }
 }

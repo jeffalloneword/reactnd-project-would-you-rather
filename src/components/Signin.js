@@ -21,7 +21,7 @@ class Signin extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    const id = this.state
+    const { id } = this.state
     console.log('loginUserID: ', id)
     const { dispatch } = this.props
 
