@@ -1,20 +1,32 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { handleSetAuthedUser } from '../actions/authedUser'
 
 
 class Nav extends Component {
+
+  handleSignInOut =  () => {
+    const { dispatch } = this.props
+    this.isSignedIn
+      ? (
+          false,
+          this.navbarUserName = '',
+          dispatch(handleSetAuthedUser(''))
+        )
+      : true
+
+    console.log('handleSignOut: ', this.navbarUserName, this.isSignedIn)
+  }
+
   render () {
 
   const { user } = this.props
-  let navbarUserName = ''
 
-  console.log('authedUser-1A: ', user)
-  //console.log('id-name: ', users[0].name)
-  navbarUserName = user ? user.name : ' '
+  let navbarUserName = user ? `Hello, ${user.name}` : ''
+  const isSignedIn = user ? true : false
 
-  console.log('navbarUserName: ', navbarUserName)
-
+  console.log('navbarUserName: ', navbarUserName, isSignedIn)
 
   return (
     <nav className="nav">
@@ -41,12 +53,13 @@ class Nav extends Component {
       <div>
         <ul>
           <li>
-            Hello, Username
-            {/* TODO: codify username in nav bar */}
+            {navbarUserName}
           </li>
           <li>
-            <NavLink to="/signin" activeClassName="active">
-              Logout
+            <NavLink to="/signin" activeClassName="active" onClick={this.handleSignInOut}>
+              {isSignedIn
+                ? 'Sign Out'
+                : `Sign In` }
             </NavLink>
           </li>
         </ul>
