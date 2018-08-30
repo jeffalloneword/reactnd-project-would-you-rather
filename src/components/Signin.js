@@ -12,7 +12,7 @@ class Signin extends Component {
 
   handleChange = (e, { value }) => {
     const id = value
-    console.log('handleChange: ', id)
+    //console.log('handleChange: ', id)
     this.setState(() => ({
       id,
     }))
@@ -22,7 +22,7 @@ class Signin extends Component {
     e.preventDefault()
 
     const { id } = this.state
-    console.log('loginUserID: ', id)
+    //console.log('loginUserID: ', id)
     const { dispatch } = this.props
 
     dispatch(handleSetAuthedUser(id))
@@ -32,14 +32,14 @@ class Signin extends Component {
       id: '',
     }))
 
-    console.log('lastID: ', id)
+    //console.log('lastID: ', id)
   }
 
   render() {
     const { users } = this.props
     const { toHome } =this.state
 
-    console.log('toHome: ', toHome)
+    //console.log('toHome: ', toHome)
 
     if (toHome === true) {
       return <Redirect to="/" />
@@ -59,7 +59,7 @@ class Signin extends Component {
       }),
     )
 
-    console.log('options: ', options)
+    //console.log('options: ', options)
 
     return (
       <div>

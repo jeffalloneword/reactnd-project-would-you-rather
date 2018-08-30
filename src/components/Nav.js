@@ -1,96 +1,86 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleSetAuthedUser } from '../actions/authedUser'
 
 
 class Nav extends Component {
-  state = {
-    isSignedIn: false
-  }
 
+  handleSignInOut = () => {
 
-  handleSignInOut =  () => {
     const { dispatch } = this.props
-    const { isSignedIn } = this.state
-    isSignedIn
-      ? (
-          false,
-          this.navbarUserName = '',
-          dispatch(handleSetAuthedUser('')),
-          this.setState(() => ({
-            isSignedIn: false
-          }))
-        )
-      : ( this.setState(() => ({
-            isSignedIn: true
-          }))
-        )
+    const { userID } = this.props
 
-    console.log('handleSignOut: ', this.navbarUserName, this.isSignedIn)
+    console.log('userID: ', userID)
+
+    if ( userID ) {
+      dispatch(handleSetAuthedUser('')),
+      this.setState(() => ({
+        isSignedIn: false
+      }))
+    }
   }
+
+
 
   render () {
 
-  const { user } = this.props
-  const { isSignedIn } = this.state
+    const { userID, user } = this.props
+    console.log('userID-render: ', userID)
 
-  let navbarUserName = user ? `Hello, ${user.name}` : ''
+    let navbarUserName = user ? `Hello, ${user.name}` : '-->'
 
-
-  console.log('navbarUserName: ', navbarUserName, isSignedIn)
-
-  return (
-    <nav className="nav">
-      <div>
-        <ul>
-          <li>
-            <NavLink to="/" exact activeClassName="active">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/new" activeClassName="active">
-              New Question
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/leaderboard" activeClassName="active">
-              Leaderboard
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-      <div> </div>
-      <div>
-        <ul>
-          <li>
-            {navbarUserName}
-          </li>
-          <li>
-            <NavLink to="/signin" activeClassName="active" onClick={this.handleSignInOut}>
-              {isSignedIn
-                ? 'Sign Out'
-                : `Sign In` }
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  )
+    return (
+      <nav className="nav">
+        <div>
+          <ul>
+            <li>
+              <NavLink to="/" exact activeClassName="active">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/new" exact activeClassName="active">
+                New Question
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/leaderboard" exact activeClassName="active">
+                Leaderboard
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        <div> </div>
+        <div>
+          <ul>
+            <li>
+              {navbarUserName}
+            </li>
+            <li>
+              <NavLink to="/signin" exact onClick={this.handleSignInOut}>
+                {navbarUserName != '-->'
+                  ? 'Sign Out'
+                  : 'Sign In' }
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    )
   }
 }
 
 function mapStateToProps({ authedUser, users }) {
-  console.log('mstp-props: ', authedUser, users)
+  //console.log('mstp-props: ', authedUser, users)
   let userID = Object.values(authedUser)
   userID = userID[0]
   const user = users[userID]
-  console.log('user: ', user)
+  //console.log('user: ', user)
   return {
-    userID,
-    user,
+    userID: userID,
+    user: user,
   }
 }
 
-export default connect(mapStateToProps)(Nav)
+export default withRouter(connect(mapStateToProps)(Nav))

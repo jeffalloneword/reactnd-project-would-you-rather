@@ -52,15 +52,15 @@ class App extends Component {
             <div>
               <Nav />
               <Route exact path="/" component={Dashboard} />
-              <Route path="/leaderboard" component={Leaderboard} />
-              <PrivateRoute path="/new" component={NewQuestion} />
+              <Route exact path="/leaderboard" component={Leaderboard} />
+              <PrivateRoute exact path="/new" component={NewQuestion} />
               <Route exact path="/poll/:id" component={Poll} />
               <PrivateRoute
                 exact
                 path="/askquestion/:id"
                 component={AskQuestion}
               />
-              <Route path="/signin" component={Signin} />
+              <Route exact path="/signin" component={Signin} />
             </div>
           )}
         </div>
