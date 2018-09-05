@@ -52,7 +52,7 @@ class App extends Component {
             <div>
               <Nav />
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/leaderboard" component={Leaderboard} />
+              <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
               <PrivateRoute exact path="/new" component={NewQuestion} />
               <Route exact path="/poll/:id" component={Poll} />
               <PrivateRoute
