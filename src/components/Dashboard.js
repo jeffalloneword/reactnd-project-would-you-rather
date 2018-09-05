@@ -5,6 +5,10 @@ import graypixel from '../images/dad7d7-pixel.png'
 
 class Dashboard extends Component {
   render() {
+
+    const { unansweredQuestionIds, answeredQuestionIds } =  this.props
+    console.log('un, ans: ', unansweredQuestionIds, answeredQuestionIds)
+
     return (
       <div>
         <div className="center">
@@ -13,7 +17,7 @@ class Dashboard extends Component {
           <button className="dashboard-button">Answered Questions</button>
         </div>
         <ul className="dashboard-list">
-          {this.props.questionIds.map(id => (
+          {unansweredQuestionIds.map(id => (
             <li key={id}>
               <Question id={id} />
             </li>
@@ -26,9 +30,12 @@ class Dashboard extends Component {
 
 function mapStateToProps({ questions }, props) {
   return {
-    questionIds: Object.keys(questions).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp,
-    ),
+    unansweredQuestionIds: Object.keys(questions)
+      .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+      .filter((q) => questions[q].optionTwo.votes.length === 0 && questions[q].optionOne.votes.length === 0),
+    answeredQuestionIds: Object.keys(questions)
+      .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+      .filter((q) => questions[q].optionTwo.votes.length > 0 || questions[q].optionOne.votes.length > 0),
   }
 }
 
