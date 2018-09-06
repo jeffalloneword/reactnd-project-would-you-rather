@@ -115,8 +115,21 @@ button.question {
   flex-flow: column;
 }
 
+.dashboard-button-active {
+  width: 10%;
+  background-color: #4caf50;
+  font-weight: bold;
+  max-width: 230px;
+  padding: 4px;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  font-size: 0.75em;
+}
+
 .dashboard-button {
   width: 10%;
+  color: silver;
   max-width: 230px;
   padding: 4px;
   margin: 0 auto;
