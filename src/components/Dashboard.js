@@ -6,7 +6,6 @@ import graypixel from '../images/dad7d7-pixel.png'
 class Dashboard extends Component {
   state = {
     showAnswered: false,
-    activeButton: false,
   }
 
   handleButton = e => {
@@ -31,14 +30,14 @@ class Dashboard extends Component {
         <div className="center">
           <button
             id="button1"
-            className={ this.state.activeButton === true ? 'dashboard-button-active' : 'dashboard-button'}
+            className={ this.state.showAnswered === false ? 'dashboard-button-active' : 'dashboard-button'}
             onClick={this.handleButton}>
             Unanswered Questions
           </button>
           <img src={graypixel} alt={''} className="vertical-bar-button" />
           <button
             id="button2"
-            className={ this.state.activeButton === true ? 'dashboard-button-active' : 'dashboard-button'}
+            className={ this.state.showAnswered === true ? 'dashboard-button-active' : 'dashboard-button'}
             onClick={this.handleButton}>
             Answered Questions
           </button>

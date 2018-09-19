@@ -59,7 +59,7 @@ class Signin extends Component {
       }),
     )
 
-    //console.log('options: ', options)
+    console.log('options: ', options)
 
     return (
       <div>
