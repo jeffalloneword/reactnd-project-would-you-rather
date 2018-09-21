@@ -11,14 +11,8 @@ import Nav from './Nav'
 import Signin from './Signin'
 import Poll from './Poll'
 
-
-
-
 const pageAuth = {
-
-
-  isAuthenticated: true,
-
+  isAuthenticated: false,
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -35,20 +29,22 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 class App extends Component {
+
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
   render() {
-    console.log('testauth', this.props.userID.authedUser !== undefined)
+    console.log('testauth', this.props.userID.authedUser !== undefined, typeof(this.props.userID.authedUser))
+
+    if (typeof(this.props.userID.authedUser) === 'string' && this.props.userID.authedUser.length > 0) {
+      // console.log('you are authenticated!', (typeof(this.props.userID.authedUser) === 'string'), this.props.userID.authedUser.length)
+
+      pageAuth.isAuthenticated = true
+    }
 
     return (
       <Router>
         <div>
-          {this.props.loading === true ? (
-            <div>
-              <Route path="/" component={Signin} />
-            </div>
-          ) : (
             <div>
               <Nav />
               <Route exact path="/" component={Dashboard} />
@@ -71,7 +67,6 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null,
     userID: authedUser,
   }
 }
