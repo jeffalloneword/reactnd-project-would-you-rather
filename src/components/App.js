@@ -29,18 +29,29 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 class App extends Component {
+  state = {
+    isAuthenticated: false,
+  }
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
-  }
-  render() {
-    console.log('testauth', this.props.userID.authedUser !== undefined, typeof(this.props.userID.authedUser))
 
-    if (typeof(this.props.userID.authedUser) === 'string' && this.props.userID.authedUser.length > 0) {
+    //console.log('testauth', this.state.isAuthenticated, typeof(this.props.userID.authedUser))
+
+    if (typeof(this.props.userID.authedUser) === 'string') {
+      if (this.props.userID.authedUser.length > 0) {
       // console.log('you are authenticated!', (typeof(this.props.userID.authedUser) === 'string'), this.props.userID.authedUser.length)
 
-      pageAuth.isAuthenticated = true
+        pageAuth.isAuthenticated = this.state.isAuthenticated
+
+        this.setState({
+          isAuthenticated: true
+        })
+      }
     }
+  }
+  render() {
+
 
     return (
       <Router>
