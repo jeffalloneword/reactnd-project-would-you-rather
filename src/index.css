@@ -15,8 +15,18 @@ a:hover {
   opacity: 0.6;
 }
 
+.percent-bar {
+  color: #000 !important;
+  background-color: #f1f1f1 !important;
+}
 
-/* Section for Would You Rather design */
+.percent-value {
+  margin-top:4px;
+  margin-bottom:4px;
+  color: #fff !important;
+  background-color: #4CAF50 !important;
+  text-align: center;
+}
 
 .semi-square {
   -webkit-border-radius: 5px;
@@ -108,12 +118,19 @@ button.question {
 
 .option-header {
   font-weight: bold;
-  margin-top: 0 auto;
+  margin: 0 auto;
 }
 
 .option-text {
   font-size: 0.8em;
-  line-height: 3em;
+  line-height: 1em;
+}
+
+.option-text-poll {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px;
 }
 
 .question-container {

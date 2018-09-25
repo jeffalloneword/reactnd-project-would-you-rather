@@ -25,6 +25,14 @@ class AskQuestion extends Component {
     const optionTwoVotesTotal = optionTwoVotes.length
     const totalVotes = optionOneVotesTotal + optionTwoVotesTotal
 
+    const optionOnePercent = optionOneVotesTotal > 0 ? optionOneVotesTotal / totalVotes * 100 : 0
+    const optionTwoPercent = optionTwoVotesTotal > 0 ? optionTwoVotesTotal / totalVotes * 100 : 0
+
+    const optionOneStyle = optionOnePercent > 0 ? { width: optionOnePercent + '%' } : { width: 10 + '%' }
+    const optionTwoStyle = optionTwoPercent > 0 ? { width: optionTwoPercent + '%' } : { width: 10 + '%' }
+
+    console.log('one,two', optionOneStyle, optionTwoPercent)
+
     return (
       <div className="question-container">
         <div className="question-header">{`Asked by ${name}`}</div>
@@ -32,15 +40,24 @@ class AskQuestion extends Component {
           <img src={avatar} alt={''} className="avatar" />
           <img src={graypixel} alt={''} className="vertical-bar" />
           <div className="question-right">
-            <span className="option-header">Would you rather</span>
+            <span className="option-header">Results:</span>
 
             <span className="option-text">
-              <p>{`${optionOneText}`}</p>
+              <p className="option-text-poll">{`... ${optionOneText} ?`}</p>
               <p>{`${optionOneVotesTotal} out of ${totalVotes} votes`}</p>
+              </span>
+              <div className="percent-bar">
+                <div className="percent-value" style={optionOneStyle}>{`${optionOnePercent} %`}</div>
+              </div>
 
-              <p>{`${optionTwoText}`}</p>
+            <span className="option-text">
+              <p className="option-text-poll">{`... ${optionTwoText} ?`}</p>
               <p>{`${optionTwoVotesTotal} out of ${totalVotes} votes`}</p>
-            </span>
+              </span>
+              <div className="percent-bar">
+                <div className="percent-value" style={optionTwoStyle}>{`${optionTwoPercent} %`}</div>
+              </div>
+
           </div>
         </div>
       </div>
