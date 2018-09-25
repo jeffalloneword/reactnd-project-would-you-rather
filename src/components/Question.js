@@ -8,7 +8,7 @@ class Question extends Component {
 
   showDetails = (e, id, showAnswered) => {
     e.preventDefault()
-    showAnswered 
+    showAnswered
       ? this.props.history.push(`/poll/${id}`)
       : this.props.history.push(`/askquestion/${id}`)
   }
@@ -40,7 +40,7 @@ class Question extends Component {
               <button
                 className="question semi-square"
                 onClick={(e) => this.showDetails(e, id, showAnswered)}>
-                Show Poll
+                { showAnswered ? `Show Poll` : `Answer This` }
               </button>
             </div>
           </div>

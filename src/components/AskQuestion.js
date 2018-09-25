@@ -26,7 +26,7 @@ class AskQuestion extends Component {
             <form>
               <span className="option-text">
                 <div className="radio">
-                  <label for="option-one">
+                  <label htmlFor="option-one">
                     <input
                       id="option-one"
                       type="radio"
@@ -37,7 +37,7 @@ class AskQuestion extends Component {
                   </label>
                 </div>
                 <div className="radio">
-                  <label for="option-two">
+                  <label htmlFor="option-two">
                     <input
                       id="option-two"
                       type="radio"
