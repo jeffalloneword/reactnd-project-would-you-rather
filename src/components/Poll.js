@@ -27,7 +27,7 @@ class AskQuestion extends Component {
 
     return (
       <div className="question-container">
-        <div className="question-header">{`${name} asks:`}</div>
+        <div className="question-header">{`Asked by ${name}`}</div>
         <div className="question-body">
           <img src={avatar} alt={''} className="avatar" />
           <img src={graypixel} alt={''} className="vertical-bar" />

@@ -12,11 +12,9 @@ class Dashboard extends Component {
     e.preventDefault()
 
     const { showAnswered } = this.state
-
     this.setState(() => ({
-      showAnswered: showAnswered ? false : true,
+      showAnswered: showAnswered ? false : true
     }))
-    //console.log('lastID: ', id)
   }
 
 
@@ -47,13 +45,13 @@ class Dashboard extends Component {
             (
               answeredQuestionIds.map(id => (
               <li key={id}>
-                <Question id={id} />
+                <Question id={id} showAnswered={this.state.showAnswered}/>
               </li>
             ))
             ) : (
               unansweredQuestionIds.map(id => (
               <li key={id}>
-                <Question id={id} />
+                <Question id={id} showAnswered={this.state.showAnswered}/>
               </li>
             ))
           )}

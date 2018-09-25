@@ -2,19 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class Question extends Component {
 
-  showDetails = (e, id) => {
+  showDetails = (e, id, showAnswered) => {
     e.preventDefault()
-
-    this.props.history.push(`/poll/${id}`)
+    showAnswered 
+      ? this.props.history.push(`/poll/${id}`)
+      : this.props.history.push(`/askquestion/${id}`)
   }
 
 
   render() {
-    const { question } = this.props
+    const { question, showAnswered } = this.props
+
+    console.log('showAnswered', this.props.showAnswered)
 
     if (question === null) {
       return <p>This Question doesn't exist.</p>
@@ -36,7 +39,7 @@ class Question extends Component {
             <div className="question-right">
               <button
                 className="question semi-square"
-                onClick={(e) => this.showDetails(e, id)}>
+                onClick={(e) => this.showDetails(e, id, showAnswered)}>
                 Show Poll
               </button>
             </div>
@@ -47,11 +50,11 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }, { id, showAnswered }) {
   const question = questions[id]
 
   return {
-    authedUser,
+    showAnswered,
     question: question
       ? formatQuestion(question, users[question.author], authedUser)
       : null,
