@@ -36,7 +36,7 @@ class Nav extends Component {
         <div>
           <ul>
             <li>
-              <NavLink to="/" exact activeClassName="active">
+              <NavLink to={user ? "/" : "/signin"} exact activeClassName="active">
                 Home
               </NavLink>
             </li>

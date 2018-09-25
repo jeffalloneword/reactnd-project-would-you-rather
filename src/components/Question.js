@@ -2,8 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
+import { Redirect, withRouter } from 'react-router-dom'
 
 class Question extends Component {
+
+  showDetails = (e, id) => {
+    e.preventDefault()
+
+    this.props.history.push(`/poll/${id}`)
+  }
+
+
   render() {
     const { question } = this.props
 
@@ -11,7 +20,7 @@ class Question extends Component {
       return <p>This Question doesn't exist.</p>
     }
 
-    const { name, avatar, optionOneText } = question
+    const { name, avatar, optionOneText, id } = question
 
     return (
       <div className="question-container">
@@ -25,7 +34,11 @@ class Question extends Component {
               <p>{`...${optionOneText}...`}</p>
             </span>
             <div className="question-right">
-              <button className="question semi-square">Show Poll</button>
+              <button
+                className="question semi-square"
+                onClick={(e) => this.showDetails(e, id)}>
+                Show Poll
+              </button>
             </div>
           </div>
         </div>
@@ -44,4 +57,4 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
       : null,
   }
 }
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

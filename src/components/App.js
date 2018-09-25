@@ -41,10 +41,10 @@ class App extends Component {
             <div>
               <Nav />
               <Switch>
-                <Route exact path="/" component={Dashboard} />
+                <PrivateRoute exact path="/" component={Dashboard} />
                 <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
                 <PrivateRoute exact path="/new" component={NewQuestion} />
-                <Route exact path="/poll/:id" component={Poll} />
+                <PrivateRoute exact path="/poll/:id" component={Poll} />
                 <PrivateRoute
                   exact
                   path="/askquestion/:id"

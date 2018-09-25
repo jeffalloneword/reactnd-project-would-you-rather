@@ -77,7 +77,7 @@ class Signin extends Component {
               alt=""
             />
           </div>
-          <form className="new-tweet" onSubmit={this.handleSubmit}>
+          <form className="new-question" onSubmit={this.handleSubmit}>
             <div>
               <Dropdown
                 placeholder="Select user..."

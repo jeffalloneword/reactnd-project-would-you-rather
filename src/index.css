@@ -8,7 +8,13 @@ body {
 a {
   text-decoration: none;
   color: #252525;
+  font-weight: normal;
 }
+
+a:hover {
+  opacity: 0.6;
+}
+
 
 /* Section for Would You Rather design */
 
@@ -317,6 +323,7 @@ li {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .nav ul {
@@ -372,71 +379,10 @@ li {
   margin: auto;
 }
 
-.tweet-info {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Hacky but less typing in the video */
-.tweet-info > div > span:first-child {
-  font-weight: bold;
-  margin-right: 5px;
-}
-.tweet-info > div > span:nth-child(2) {
-  color: #969696;
-  font-size: 16px;
-}
-.tweet-info > div > div {
-  color: #969696;
-  font-size: 15px;
-}
-.tweet-info > div > p {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.tweet-icons {
-  display: flex;
-  align-items: center;
-}
-.tweet-icons > span {
-  color: #969696;
-  margin: 0 15px 0 5px;
-  font-size: 18px !important;
-}
-.tweet-icon {
-  font-size: 27px;
-  color: #697784;
-}
-.tweet-icon:hover {
-  color: #00b5d6;
-  cursor: pointer;
-}
-.replying-to {
-  border: none;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  color: #969696;
-  cursor: pointer;
-}
-
-.heart-button {
-  background: transparent;
-  border: none;
-}
-
-.new-tweet {
+.new-question {
   width: 100%;
   max-width: 590px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-}
-
-.tweet-length {
-  text-align: right;
-  margin-top: 10px;
-  font-size: 20px;
-  color: #c3392a;
 }
