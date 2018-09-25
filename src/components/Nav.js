@@ -5,23 +5,24 @@ import { handleSetAuthedUser } from '../actions/authedUser'
 
 
 class Nav extends Component {
+  state = {
+    isSignedIn: false,
+  }
+
 
   handleSignInOut = () => {
-
     const { dispatch } = this.props
-    const { userID } = this.props
+    const { user } = this.props
+    console.log('userID: ', user)
 
-    console.log('userID: ', userID)
 
-    if ( userID ) {
-      dispatch(handleSetAuthedUser('')),
+    if ( user ) {
+      dispatch(handleSetAuthedUser(''))
       this.setState(() => ({
         isSignedIn: false
       }))
     }
   }
-
-
 
   render () {
 
@@ -40,12 +41,12 @@ class Nav extends Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/new" exact activeClassName="active">
+              <NavLink to={user ? "/new" : "/signin"} exact activeClassName="active">
                 New Question
               </NavLink>
             </li>
             <li>
-              <NavLink to="/leaderboard" exact activeClassName="active">
+              <NavLink to={user ? "/leaderboard" : "/signin"} exact activeClassName="active">
                 Leaderboard
               </NavLink>
             </li>
@@ -59,7 +60,7 @@ class Nav extends Component {
             </li>
             <li>
               <NavLink to="/signin" exact onClick={this.handleSignInOut}>
-                {navbarUserName != '-->'
+                {navbarUserName !== '-->'
                   ? 'Sign Out'
                   : 'Sign In' }
               </NavLink>
@@ -73,8 +74,7 @@ class Nav extends Component {
 
 function mapStateToProps({ authedUser, users }) {
   //console.log('mstp-props: ', authedUser, users)
-  let userID = Object.values(authedUser)
-  userID = userID[0]
+  let userID = authedUser.authedUser
   const user = users[userID]
   //console.log('user: ', user)
   return {

@@ -1,5 +1,5 @@
 export function formatQuestion(question, author, authedUser) {
-  const { id, likes, replies, optionOne, optionTwo, timestamp } = question
+  const { id, optionOne, optionTwo, timestamp } = question
   const { name, avatarURL } = author
 
   return {

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import LoadingBar from 'react-redux-loading'
 import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
 import AskQuestion from './AskQuestion'
@@ -12,14 +11,14 @@ import Signin from './Signin'
 import Poll from './Poll'
 
 const pageAuth = {
-  isAuthenticated: false,
+  isAuthenticated: this.isLoggedIn,
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      pageAuth.isAuthenticated === true ? (
+    render={(props) =>
+      pageAuth.isAuthenticated ? (
         <Component {...props} />
       ) : (
         <Redirect to="/signin" />
@@ -29,47 +28,32 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 class App extends Component {
-  state = {
-    isAuthenticated: false,
-  }
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
-
-    //console.log('testauth', this.state.isAuthenticated, typeof(this.props.userID.authedUser))
-
-    if (typeof(this.props.userID.authedUser) === 'string') {
-      if (this.props.userID.authedUser.length > 0) {
-      // console.log('you are authenticated!', (typeof(this.props.userID.authedUser) === 'string'), this.props.userID.authedUser.length)
-
-        pageAuth.isAuthenticated = this.state.isAuthenticated
-
-        this.setState({
-          isAuthenticated: true
-        })
-      }
-    }
   }
-  render() {
 
+  render() {
 
     return (
       <Router>
         <div>
             <div>
               <Nav />
-              <Route exact path="/" component={Dashboard} />
-              <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
-              <PrivateRoute exact path="/new" component={NewQuestion} />
-              <Route exact path="/poll/:id" component={Poll} />
-              <PrivateRoute
-                exact
-                path="/askquestion/:id"
-                component={AskQuestion}
-              />
-              <Route exact path="/signin" component={Signin} />
+              <Switch>
+                <Route exact path="/" component={Dashboard} />
+                <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
+                <PrivateRoute exact path="/new" component={NewQuestion} />
+                <Route exact path="/poll/:id" component={Poll} />
+                <PrivateRoute
+                  exact
+                  path="/askquestion/:id"
+                  component={AskQuestion}
+                />
+                <Route exact path="/signin" component={Signin} />
+                <Route component={Dashboard} />
+              </Switch>
             </div>
-          )}
         </div>
       </Router>
     )
@@ -77,9 +61,20 @@ class App extends Component {
 }
 
 function mapStateToProps({ authedUser }) {
-  return {
-    userID: authedUser,
+  console.log('testauth', typeof(authedUser.authedUser))
+
+  if (typeof(authedUser.authedUser) === 'string') {
+    if (authedUser.authedUser.length > 0) {
+      pageAuth.isAuthenticated = true
+    }
+  } else {
+      pageAuth.isAuthenticated = false
   }
+
+  return {
+    isLoggedIn: pageAuth.isAuthenticated,
+  }
+
 }
 
 export default connect(mapStateToProps)(App)

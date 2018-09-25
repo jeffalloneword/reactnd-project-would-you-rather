@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import graypixel from '../images/dad7d7-pixel.png'
 
 class Leaderboard extends Component {
   render() {
@@ -73,7 +72,7 @@ class Leaderboard extends Component {
   }
 }
 
-function mapStateToProps({ users }, props) {
+function mapStateToProps({ users }) {
   return {
     users: users,
   }
