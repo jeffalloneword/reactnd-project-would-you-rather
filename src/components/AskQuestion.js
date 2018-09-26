@@ -5,7 +5,39 @@ import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 
 class AskQuestion extends Component {
+  state = {
+    id: '',
+    toHome: false,
+  }
+
+  handleChange = (e) => {
+    const id = e.target.value
+    console.log('handleChange: ', id)
+    this.setState(() => ({
+      id,
+    }))
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+
+    const { id } = this.state
+    //console.log('loginUserID: ', id)
+    const { dispatch } = this.props
+
+    //dispatch(handleSetAuthedUser(id))
+
+    //this.setState(() => ({
+    //  toHome: id ? true : false,
+    //  id: '',
+    //}))
+
+    //console.log('lastID: ', id)
+  }
+
+
   render() {
+
     const { question } = this.props
 
     if (question === null) {
@@ -21,19 +53,21 @@ class AskQuestion extends Component {
           <img src={avatar} alt={''} className="avatar" />
           <img src={graypixel} alt={''} className="vertical-bar" />
           <div className="question-right">
-            <span className="option-header">Would you rather</span>
-
-            <form>
+            <div className="option-header">Would you rather</div>
+            <div className="line-height"></div>
+            <form onSubmit={this.handleSubmit}>
               <span className="option-text">
                 <div className="radio">
                   <label htmlFor="option-one">
                     <input
                       id="option-one"
                       type="radio"
-                      value="option1"
+                      value={"option1"}
                       name="option-radios"
+                      className="bottom-margin"
+                      onChange={this.handleChange}
                     />
-                    {`${optionOneText}`}
+                    <span className="option-text-poll">{`... ${optionOneText} ?`}</span>
                   </label>
                 </div>
                 <div className="radio">
@@ -43,8 +77,10 @@ class AskQuestion extends Component {
                       type="radio"
                       value="option2"
                       name="option-radios"
+                      className="bottom-margin"
+                      onChange={this.handleChange}
                     />
-                    {`${optionTwoText}`}
+                  <span className="option-text-poll">{`... ${optionTwoText} ?`}</span>
                   </label>
                 </div>
                 <p />

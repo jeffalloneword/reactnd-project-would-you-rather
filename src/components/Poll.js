@@ -43,10 +43,10 @@ class AskQuestion extends Component {
       ? questionTwoText = '<-- Your Answer!'
       : questionTwoText = ''
 
-    console.log('authedUserPoll', optionOneVotes.includes(UserID), questionOneText, optionTwoVotes.includes(UserID), questionTwoText)
+    //console.log('authedUserPoll', optionOneVotes.includes(UserID), questionOneText, optionTwoVotes.includes(UserID), questionTwoText)
 
 
-    console.log('one,two', optionOneStyle, optionTwoPercent)
+    //console.log('one,two', optionOneStyle, optionTwoPercent)
 
     return (
       <div className="question-container">

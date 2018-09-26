@@ -15,6 +15,14 @@ a:hover {
   opacity: 0.6;
 }
 
+.bottom-margin {
+  margin-bottom: 10px;
+}
+
+.line-height {
+  height: 20px;
+}
+
 .percent-bar {
   color: #000 !important;
   background-color: #f1f1f1 !important;

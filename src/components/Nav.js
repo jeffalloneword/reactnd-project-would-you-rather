@@ -41,7 +41,7 @@ class Nav extends Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to={user ? "/new" : "/signin"} exact activeClassName="active">
+              <NavLink to={user ? "/add" : "/signin"} exact activeClassName="active">
                 New Question
               </NavLink>
             </li>
