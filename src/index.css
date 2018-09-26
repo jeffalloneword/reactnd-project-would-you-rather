@@ -28,6 +28,11 @@ a:hover {
   text-align: center;
 }
 
+.question-text {
+  color: #4CAF50;
+  font-style: normal;
+}
+
 .semi-square {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

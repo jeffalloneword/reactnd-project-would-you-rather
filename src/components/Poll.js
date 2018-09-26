@@ -31,6 +31,21 @@ class AskQuestion extends Component {
     const optionOneStyle = optionOnePercent > 0 ? { width: optionOnePercent + '%' } : { width: 10 + '%' }
     const optionTwoStyle = optionTwoPercent > 0 ? { width: optionTwoPercent + '%' } : { width: 10 + '%' }
 
+
+    const UserID = this.props.authedUser.authedUser
+    let questionOneText, questionTwoText = ''
+
+    optionOneVotes.includes(UserID) === true
+      ? questionOneText = '<-- Your Answer!'
+      : questionOneText = ''
+
+    optionTwoVotes.includes(UserID) === true
+      ? questionTwoText = '<-- Your Answer!'
+      : questionTwoText = ''
+
+    console.log('authedUserPoll', optionOneVotes.includes(UserID), questionOneText, optionTwoVotes.includes(UserID), questionTwoText)
+
+
     console.log('one,two', optionOneStyle, optionTwoPercent)
 
     return (
@@ -43,7 +58,7 @@ class AskQuestion extends Component {
             <span className="option-header">Results:</span>
 
             <span className="option-text">
-              <p className="option-text-poll">{`... ${optionOneText} ?`}</p>
+              <p className="option-text-poll">{`... ${optionOneText} ?`}<span className="question-text">{` ${questionOneText}`}</span></p>
               <p>{`${optionOneVotesTotal} out of ${totalVotes} votes`}</p>
               </span>
               <div className="percent-bar">
@@ -51,7 +66,7 @@ class AskQuestion extends Component {
               </div>
 
             <span className="option-text">
-              <p className="option-text-poll">{`... ${optionTwoText} ?`}</p>
+              <p className="option-text-poll">{`... ${optionTwoText} ?`}<span className="question-text">{` ${questionTwoText}`}</span></p>
               <p>{`${optionTwoVotesTotal} out of ${totalVotes} votes`}</p>
               </span>
               <div className="percent-bar">
