@@ -25,7 +25,7 @@ export function handleAddUserAnswer(info) {
 }
 
 export function addUserQuestion ({ authedUser, qid }) {
-  console.log('addUserQuestion', authedUser, qid)
+  // console.log('addUserQuestion', authedUser, qid)
   return {
     type: ADD_USER_QUESTION,
     authedUser,
@@ -34,7 +34,7 @@ export function addUserQuestion ({ authedUser, qid }) {
 }
 
 export function handleAddUserQuestion(info) {
-  console.log('info: ', info)
+  //console.log('info: ', info)
   return (dispatch) => {
     dispatch(addUserQuestion(info))
   }

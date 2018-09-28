@@ -19,7 +19,7 @@ export default function users (state = {}, action) {
         }
       }
     case ADD_USER_QUESTION :
-      console.log('reducer-ADDUSERQUESTION', state, action)
+      //console.log('reducer-ADDUSERQUESTION', state, action)
       return {
         ...state,
         [action.authedUser]: {

@@ -14,7 +14,7 @@ class AskQuestion extends Component {
 
   handleChange = (e) => {
     const chosenOption = e.target.value
-    console.log('handleChange: ', chosenOption)
+    //console.log('handleChange: ', chosenOption)
     this.setState(() => ({
       chosenOption,
     }))
@@ -42,7 +42,7 @@ class AskQuestion extends Component {
       toHome: chosenOption ? true : false,
       chosenOption: '',
     }))
-    
+
   }
 
 

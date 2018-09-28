@@ -44,7 +44,7 @@ class Poll extends Component {
       : questionTwoText = ''
 
     //console.log('authedUserPoll', optionOneVotes.includes(UserID), questionOneText, optionTwoVotes.includes(UserID), questionTwoText)
-    console.log('i just came from askquestion')
+    //console.log('i just came from askquestion')
 
     //console.log('one,two', optionOneStyle, optionTwoPercent)
 

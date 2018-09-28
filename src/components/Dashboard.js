@@ -22,7 +22,7 @@ class Dashboard extends Component {
   render() {
 
     const { unansweredQuestionIds, answeredQuestionIds, users } =  this.props
-    console.log('dashboard-users: ', users)
+    //console.log('dashboard-users: ', users)
 
     return (
       <div>
@@ -38,7 +38,7 @@ class Dashboard extends Component {
             id="button2"
             className={ this.state.showAnswered === true ? 'dashboard-button-active' : 'dashboard-button'}
             onClick={this.handleButton}>
-            Answered Questions
+            Answered<br/>Questions
           </button>
         </div>
         <ul className="dashboard-list">
@@ -65,8 +65,8 @@ class Dashboard extends Component {
 function mapStateToProps({ users, questions, authedUser }) {
 
   let userID = authedUser.authedUser
-  console.log('userID', userID)
-  console.log('questions: ', questions)
+  //console.log('userID', userID)
+  //console.log('questions: ', questions)
 
   return {
     unansweredQuestionIds: Object.keys(questions)

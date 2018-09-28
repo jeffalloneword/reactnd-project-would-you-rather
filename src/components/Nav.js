@@ -13,7 +13,7 @@ class Nav extends Component {
   handleSignInOut = () => {
     const { dispatch } = this.props
     const { user } = this.props
-    console.log('userID: ', user)
+    //console.log('userID: ', user)
 
 
     if ( user ) {
@@ -27,7 +27,7 @@ class Nav extends Component {
   render () {
 
     const { userID, user } = this.props
-    console.log('userID-render: ', userID)
+    //console.log('userID-render: ', userID)
 
     let navbarUserName = user ? `Hello, ${user.name}` : '-->'
 

@@ -60,7 +60,7 @@ class App extends Component {
 }
 
 function mapStateToProps({ authedUser }) {
-  console.log('testauth', typeof(authedUser.authedUser))
+  //console.log('testauth', typeof(authedUser.authedUser))
 
   if (typeof(authedUser.authedUser) === 'string') {
     if (authedUser.authedUser.length > 0) {
