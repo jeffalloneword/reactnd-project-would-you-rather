@@ -4,6 +4,7 @@ import { withRouter, Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 import { handleAnswerQuestion } from '../actions/questions'
+import { handleAddUserAnswer } from '../actions/users'
 
 class AskQuestion extends Component {
   state = {
@@ -31,12 +32,17 @@ class AskQuestion extends Component {
       qid: question.id,
       answer: chosenOption,
     }))
+    .then(() => dispatch(handleAddUserAnswer({
+      authedUser: UserID,
+      qid: question.id,
+      answer: chosenOption,
+    })))
 
     this.setState(() => ({
       toHome: chosenOption ? true : false,
       chosenOption: '',
     }))
-    //this.props.history.push(`/poll/${question.id}`)
+    
   }
 
 
