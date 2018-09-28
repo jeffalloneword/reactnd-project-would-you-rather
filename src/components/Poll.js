@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 
-class AskQuestion extends Component {
+class Poll extends Component {
   render() {
     const { question } = this.props
 
@@ -25,8 +25,8 @@ class AskQuestion extends Component {
     const optionTwoVotesTotal = optionTwoVotes.length
     const totalVotes = optionOneVotesTotal + optionTwoVotesTotal
 
-    const optionOnePercent = optionOneVotesTotal > 0 ? optionOneVotesTotal / totalVotes * 100 : 0
-    const optionTwoPercent = optionTwoVotesTotal > 0 ? optionTwoVotesTotal / totalVotes * 100 : 0
+    const optionOnePercent = optionOneVotesTotal > 0 ? Math.round(optionOneVotesTotal / totalVotes * 100) : 0
+    const optionTwoPercent = optionTwoVotesTotal > 0 ? Math.round(optionTwoVotesTotal / totalVotes * 100) : 0
 
     const optionOneStyle = optionOnePercent > 0 ? { width: optionOnePercent + '%' } : { width: 10 + '%' }
     const optionTwoStyle = optionTwoPercent > 0 ? { width: optionTwoPercent + '%' } : { width: 10 + '%' }
@@ -44,7 +44,7 @@ class AskQuestion extends Component {
       : questionTwoText = ''
 
     //console.log('authedUserPoll', optionOneVotes.includes(UserID), questionOneText, optionTwoVotes.includes(UserID), questionTwoText)
-
+    console.log('i just came from askquestion')
 
     //console.log('one,two', optionOneStyle, optionTwoPercent)
 
@@ -90,4 +90,4 @@ function mapStateToProps({ authedUser, users, questions }, props) {
       : null,
   }
 }
-export default withRouter(connect(mapStateToProps)(AskQuestion))
+export default withRouter(connect(mapStateToProps)(Poll))

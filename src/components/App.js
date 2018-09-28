@@ -38,23 +38,21 @@ class App extends Component {
     return (
       <Router>
         <div>
-            <div>
-              <Nav />
-              <Switch>
-                <PrivateRoute exact path="/" component={Dashboard} />
-                <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
-                <PrivateRoute exact path="/add" component={NewQuestion} />
-                <PrivateRoute exact path="/poll/:id" component={Poll} />
-                <PrivateRoute exact path="/askquestion/:id" component={AskQuestion} />
-                <PrivateRoute
-                  exact
-                  path="/askquestion/:id"
-                  component={AskQuestion}
-                />
-                <Route exact path="/signin" component={Signin} />
-                <Route component={Dashboard} />
-              </Switch>
-            </div>
+          <Nav />
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
+            <PrivateRoute exact path="/add" component={NewQuestion} />
+            <PrivateRoute exact path="/poll/:id" component={Poll} />
+            <PrivateRoute exact path="/askquestion/:id" component={AskQuestion} />
+            <PrivateRoute
+              exact
+              path="/askquestion/:id"
+              component={AskQuestion}
+            />
+            <Route exact path="/signin" component={Signin} />
+            <Route component={Dashboard} />
+          </Switch>
         </div>
       </Router>
     )

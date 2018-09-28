@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Question from './Question'
 import graypixel from '../images/dad7d7-pixel.png'
 
@@ -21,7 +22,7 @@ class Dashboard extends Component {
   render() {
 
     const { unansweredQuestionIds, answeredQuestionIds } =  this.props
-    console.log('un, ans: ', unansweredQuestionIds, answeredQuestionIds)
+    //console.log('un, ans: ', unansweredQuestionIds, answeredQuestionIds)
 
     return (
       <div>
@@ -65,6 +66,7 @@ function mapStateToProps({ questions, authedUser }) {
 
   let userID = authedUser.authedUser
   console.log('userID', userID)
+  console.log('questions: ', questions)
 
   return {
     unansweredQuestionIds: Object.keys(questions)
@@ -76,4 +78,4 @@ function mapStateToProps({ questions, authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default withRouter(connect(mapStateToProps)(Dashboard))

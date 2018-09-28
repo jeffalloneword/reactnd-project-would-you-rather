@@ -49,7 +49,7 @@ let questions = {
     author: 'jeffhyatt',
     timestamp: 1467166872634,
     optionOne: {
-      votes: [],
+      votes: ['fbooth'],
       text: 'have horrible short term memory',
     },
     optionTwo: {
@@ -188,6 +188,7 @@ export function _saveQuestion(question) {
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+  console.log('5_saveQA: ', authedUser, qid, answer)
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {

@@ -1,48 +1,60 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
+import { handleAnswerQuestion } from '../actions/questions'
 
 class AskQuestion extends Component {
   state = {
-    id: '',
+    chosenOption: '',
     toHome: false,
   }
 
   handleChange = (e) => {
-    const id = e.target.value
-    console.log('handleChange: ', id)
+    const chosenOption = e.target.value
+    console.log('handleChange: ', chosenOption)
     this.setState(() => ({
-      id,
+      chosenOption,
     }))
   }
 
   handleSubmit = e => {
     e.preventDefault()
 
-    const { id } = this.state
-    //console.log('loginUserID: ', id)
-    const { dispatch } = this.props
+    const { chosenOption } = this.state
+    const { dispatch, authedUser, question } = this.props
+    const UserID = authedUser.authedUser
 
-    //dispatch(handleSetAuthedUser(id))
+    dispatch(handleAnswerQuestion({
+      authedUser: UserID,
+      qid: question.id,
+      answer: chosenOption,
+    }))
 
-    //this.setState(() => ({
-    //  toHome: id ? true : false,
-    //  id: '',
-    //}))
-
-    //console.log('lastID: ', id)
+    this.setState(() => ({
+      toHome: chosenOption ? true : false,
+      chosenOption: '',
+    }))
+    //this.props.history.push(`/poll/${question.id}`)
   }
 
 
   render() {
 
     const { question } = this.props
+    const { chosenOption, toHome } = this.state
+
+    if (toHome === true) {
+      return <Redirect to={`/poll/${question.id}`} />
+    }
 
     if (question === null) {
       return <p>This Question doesn't exist.</p>
     }
+
+
+    const isEnabled = chosenOption.length > 0
 
     const { name, avatar, optionOneText, optionTwoText } = question
 
@@ -62,7 +74,7 @@ class AskQuestion extends Component {
                     <input
                       id="option-one"
                       type="radio"
-                      value={"option1"}
+                      value="optionOne"
                       name="option-radios"
                       className="bottom-margin"
                       onChange={this.handleChange}
@@ -75,7 +87,7 @@ class AskQuestion extends Component {
                     <input
                       id="option-two"
                       type="radio"
-                      value="option2"
+                      value="optionTwo"
                       name="option-radios"
                       className="bottom-margin"
                       onChange={this.handleChange}
@@ -87,7 +99,7 @@ class AskQuestion extends Component {
                 <p />
               </span>
               <div className="question-right">
-                <button className="question semi-square">Submit</button>
+                <button disabled={!isEnabled} className="question semi-square">Submit</button>
               </div>
             </form>
           </div>
