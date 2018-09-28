@@ -1,47 +1,65 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Redirect } from 'react-router-dom'
+import { handleSaveNewQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
   state = {
-    textOptionOne: '',
-    textOptionTwo: '',
+    optionOneText: '',
+    optionTwoText: '',
+    toHome: false,
   }
+
   handleChange = e => {
     e.persist()
     const optionKey = e.target.name
     const optionValue = e.target.value
     this.setState({ [optionKey]: optionValue })
   }
+
   handleSubmit = e => {
     e.preventDefault()
 
-    const { textOptionOne, textOptionTwo } = this.state
+    const { optionOneText, optionTwoText } = this.state
+    const { authedUser, dispatch } = this.props
 
-    // todo: add question to store
+    dispatch(handleSaveNewQuestion({
+      optionOneText,
+      optionTwoText,
+      authedUser,
+    }))
+
 
     this.setState(() => ({
-      textOptionOne: '',
-      textOptionTwo: '',
+      optionOneText: '',
+      optionTwoText: '',
+      toHome: true,
     }))
   }
+
   render() {
-    const { textOptionOne, textOptionTwo } = this.state
+    const { optionOneText, optionTwoText, toHome } = this.state
+
+    if (toHome === true) {
+      return <Redirect to={`/`} />
+    }
 
     return (
       <div className="new-question">
-        <h3 className="center">Create New Question</h3>
+        <h3 className="center">Would You Rather?</h3>
         <form className="form-question" onSubmit={this.handleSubmit}>
           <textarea
-            name="textOptionOne"
+            name="optionOneText"
             placeholder="Option 1"
-            value={textOptionOne}
+            value={optionOneText}
             onChange={this.handleChange}
             className="textarea-question"
             maxLength={120}
           />
           <textarea
-            name="textOptionTwo"
+            name="optionTwoText"
             placeholder="Option 2"
-            value={textOptionTwo}
+            value={optionTwoText}
             onChange={this.handleChange}
             className="textarea-question"
             maxLength={120}
@@ -49,7 +67,7 @@ class NewQuestion extends Component {
           <button
             className="btn-question"
             type="submit"
-            disabled={textOptionOne === ''}
+            disabled={optionOneText === '' || optionTwoText === ''}
           >
             Submit
           </button>
@@ -59,4 +77,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser: authedUser.authedUser
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(NewQuestion))
