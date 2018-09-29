@@ -33,8 +33,7 @@ export function addUserQuestion ({ authedUser, qid }) {
   }
 }
 
-export function handleAddUserQuestion(info) {
-  //console.log('info: ', info)
+export function handleAddUserQuestion(info) console.log('info: ', info)
   return (dispatch) => {
     dispatch(addUserQuestion(info))
   }
