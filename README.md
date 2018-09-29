@@ -10,3 +10,5 @@ To install and run this React/Redux web application:
 
 The **Would You Rather** app allows a user to create simple poll questions, answer simple poll questions, the results of answered poll questions, and see a leaderboard of users.
 
+
+![Would You Rather - React/Redux web app](https://j.gifs.com/zKMW6Z.gif)
