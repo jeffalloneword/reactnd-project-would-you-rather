@@ -26,7 +26,7 @@ class Nav extends Component {
 
   render () {
 
-    const { userID, user } = this.props
+    const { user } = this.props
     //console.log('userID-render: ', userID)
 
     let navbarUserName = user ? `Hello, ${user.name}` : '-->'
@@ -78,7 +78,6 @@ function mapStateToProps({ authedUser, users }) {
   const user = users[userID]
   //console.log('user: ', user)
   return {
-    userID: userID,
     user: user,
   }
 }

@@ -6,6 +6,7 @@ import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
 import AskQuestion from './AskQuestion'
 import Leaderboard from './Leaderboard'
+import NotFound from './NotFound'
 import Nav from './Nav'
 import Signin from './Signin'
 import Poll from './Poll'
@@ -51,7 +52,7 @@ class App extends Component {
               component={AskQuestion}
             />
             <Route exact path="/signin" component={Signin} />
-            <Route component={Dashboard} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
