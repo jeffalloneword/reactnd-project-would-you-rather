@@ -40,7 +40,7 @@ class NewQuestion extends Component {
   render() {
     const { optionOneText, optionTwoText, toHome } = this.state
 
-    if (toHome === true) {
+    if (toHome) {
       return <Redirect to={`/`} />
     }
 
