@@ -32,7 +32,6 @@ class Leaderboard extends Component {
                 (a.answeredQuestions + a.createdQuestions),
             )
             .map((leader, index) => (
-              <div>
                 <li key={leader.username}>
                   <div className="leaderboard-body">
                     {index === 0 && <div className="triangle-gold" />}
@@ -63,8 +62,7 @@ class Leaderboard extends Component {
                       </div>
                     </div>
                   </div>
-                </li>
-              </div>
+                </li>      
             ))}
         </ul>
       </div>
