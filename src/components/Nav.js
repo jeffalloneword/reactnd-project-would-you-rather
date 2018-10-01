@@ -3,31 +3,27 @@ import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleSetAuthedUser } from '../actions/authedUser'
 
-
 class Nav extends Component {
   state = {
     isSignedIn: false,
   }
 
-
   handleSignInOut = () => {
-    const { dispatch } = this.props
-    const { user } = this.props
-    //console.log('userID: ', user)
+    const { dispatch, history, user } = this.props
+    //console.log('handleSignOut: ', user, history)
 
-
-    if ( user ) {
+    if (user) {
       dispatch(handleSetAuthedUser(''))
       this.setState(() => ({
-        isSignedIn: false
+        isSignedIn: false,
       }))
+      history.push('/')
     }
   }
 
-  render () {
-
+  render() {
     const { user } = this.props
-    console.log('nav-user-render: ', user)
+    //console.log('nav-user-render: ', user, history, user === true)
 
     let navbarUserName = user ? `Hello, ${user.name}` : '-->'
 
@@ -36,17 +32,17 @@ class Nav extends Component {
         <div>
           <ul>
             <li>
-              <NavLink to={user ? "/" : "/signin"} activeClassName="active">
+              <NavLink to="/" activeClassName="active">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to={user ? "/add" : "/signin"} activeClassName="active">
+              <NavLink to="/add" activeClassName="active">
                 New Question
               </NavLink>
             </li>
             <li>
-              <NavLink to={user ? "/leaderboard" : "/signin"} activeClassName="active">
+              <NavLink to="/leaderboard" activeClassName="active">
                 Leaderboard
               </NavLink>
             </li>
@@ -55,14 +51,10 @@ class Nav extends Component {
         <div> </div>
         <div>
           <ul>
-            <li>
-              {navbarUserName}
-            </li>
+            <li>{navbarUserName}</li>
             <li>
               <NavLink to="/signin" exact onClick={this.handleSignInOut}>
-                {navbarUserName !== '-->'
-                  ? 'Sign Out'
-                  : 'Sign In' }
+                {navbarUserName !== '-->' ? 'Sign Out' : 'Sign In'}
               </NavLink>
             </li>
           </ul>
@@ -73,7 +65,7 @@ class Nav extends Component {
 }
 
 function mapStateToProps({ authedUser, users }) {
-  console.log('mstp-props: ', authedUser, users)
+  //console.log('mstp-props: ', authedUser, users)
   let userID = authedUser.authedUser
   const user = users[userID]
   //console.log('user: ', user)
@@ -83,4 +75,4 @@ function mapStateToProps({ authedUser, users }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Nav))
+export default connect(mapStateToProps)(withRouter(Nav))

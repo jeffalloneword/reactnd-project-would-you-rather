@@ -12,7 +12,7 @@ class Signin extends Component {
 
   handleChange = (e, { value }) => {
     const id = value
-    //console.log('handleChange: ', id)
+
     this.setState(() => ({
       id,
     }))
@@ -20,7 +20,6 @@ class Signin extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-
     const { id } = this.state
     //console.log('loginUserID: ', id)
     const { dispatch } = this.props
@@ -31,18 +30,17 @@ class Signin extends Component {
       toHome: id ? true : false,
       id: '',
     }))
-
-    //console.log('lastID: ', id)
   }
 
   render() {
     const { users } = this.props
-    const { toHome } =this.state
+    const { toHome } = this.state
+    //const { from } = this.props.location.state || { from: {pathname: "/" } };
 
-    //console.log('toHome: ', toHome)
+    //console.log('from: ', from, this.props.location.pathname)
 
-    if (toHome === true) {
-      return <Redirect to="/" />
+    if (toHome) {
+      return <Redirect to='/' />
     }
 
     const userIds = Object.keys(users).sort((a, b) =>

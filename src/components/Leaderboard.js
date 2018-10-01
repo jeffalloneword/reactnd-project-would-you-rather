@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Leaderboard extends Component {
   render() {
@@ -82,4 +82,4 @@ function mapStateToProps({ users, authedUser }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Leaderboard))
+export default connect(mapStateToProps)(Leaderboard)

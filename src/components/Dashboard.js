@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Question from './Question'
 import graypixel from '../images/dad7d7-pixel.png'
 
@@ -82,4 +82,4 @@ function mapStateToProps({ questions, authedUser }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Dashboard))
+export default connect(mapStateToProps)(Dashboard)

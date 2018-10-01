@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 import { handleAnswerQuestion } from '../actions/questions'
 import { handleAddUserAnswer } from '../actions/users'
-import { NotFound } from '../components/NotFound'
+import NoPageFound from '../NoPageFound'
 
 class AskQuestion extends Component {
   state = {
@@ -13,7 +13,7 @@ class AskQuestion extends Component {
     toHome: false,
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const chosenOption = e.target.value
     //console.log('handleChange: ', chosenOption)
     this.setState(() => ({
@@ -28,30 +28,36 @@ class AskQuestion extends Component {
     const { dispatch, authedUser, question } = this.props
     const UserID = authedUser.authedUser
 
-    dispatch(handleAnswerQuestion({
-      authedUser: UserID,
-      qid: question.id,
-      answer: chosenOption,
-    }))
-    .then(() => dispatch(handleAddUserAnswer({
-      authedUser: UserID,
-      qid: question.id,
-      answer: chosenOption,
-    })))
+    dispatch(
+      handleAnswerQuestion({
+        authedUser: UserID,
+        qid: question.id,
+        answer: chosenOption,
+      }),
+    ).then(() =>
+      dispatch(
+        handleAddUserAnswer({
+          authedUser: UserID,
+          qid: question.id,
+          answer: chosenOption,
+        }),
+      ),
+    )
 
     this.setState(() => ({
       toHome: chosenOption ? true : false,
       chosenOption: '',
     }))
-
   }
 
-
   render() {
-
     const { question, authedUser } = this.props
     const { chosenOption, toHome } = this.state
     const UserID = authedUser.authedUser
+
+    if (question === null) {
+      return <NoPageFound />
+    }
 
     if (!UserID) {
       return <Redirect to="/signin" />
@@ -60,11 +66,6 @@ class AskQuestion extends Component {
     if (toHome === true) {
       return <Redirect to={`/poll/${question.id}`} />
     }
-
-    if (question === null) {
-      return <NotFound />
-    }
-
 
     const isEnabled = chosenOption.length > 0
 
@@ -78,7 +79,7 @@ class AskQuestion extends Component {
           <img src={graypixel} alt={''} className="vertical-bar" />
           <div className="question-right">
             <div className="option-header">Would you rather</div>
-            <div className="line-height"></div>
+            <div className="line-height" />
             <form onSubmit={this.handleSubmit}>
               <span className="option-text">
                 <div className="radio">
@@ -104,14 +105,16 @@ class AskQuestion extends Component {
                       className="bottom-margin"
                       onChange={this.handleChange}
                     />
-                  <span className="option-text-poll">{`... ${optionTwoText} ?`}</span>
+                    <span className="option-text-poll">{`... ${optionTwoText} ?`}</span>
                   </label>
                 </div>
                 <p />
                 <p />
               </span>
               <div className="question-right">
-                <button disabled={!isEnabled} className="question semi-square">Submit</button>
+                <button disabled={!isEnabled} className="question semi-square">
+                  Submit
+                </button>
               </div>
             </form>
           </div>
@@ -131,4 +134,4 @@ function mapStateToProps({ authedUser, users, questions }, props) {
       : null,
   }
 }
-export default withRouter(connect(mapStateToProps)(AskQuestion))
+export default connect(mapStateToProps)(AskQuestion)

@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
-import { NotFound } from '../components/NotFound'
+import NoPageFound from '../NoPageFound'
 
 class Poll extends Component {
   render() {
     const UserID = this.props.authedUser.authedUser
     const { question } = this.props
 
-    if (!UserID) {
-      return <Redirect to="/signin" />
+    if (question === null) {
+      return <NoPageFound />
     }
 
-    if (question === null) {
-      return <NotFound />
+    if (!UserID) {
+      return <Redirect to="/signin" />
     }
 
     const {
@@ -31,21 +31,34 @@ class Poll extends Component {
     const optionTwoVotesTotal = optionTwoVotes.length
     const totalVotes = optionOneVotesTotal + optionTwoVotesTotal
 
-    const optionOnePercent = optionOneVotesTotal > 0 ? Math.round(optionOneVotesTotal / totalVotes * 100) : 0
-    const optionTwoPercent = optionTwoVotesTotal > 0 ? Math.round(optionTwoVotesTotal / totalVotes * 100) : 0
+    const optionOnePercent =
+      optionOneVotesTotal > 0
+        ? Math.round((optionOneVotesTotal / totalVotes) * 100)
+        : 0
+    const optionTwoPercent =
+      optionTwoVotesTotal > 0
+        ? Math.round((optionTwoVotesTotal / totalVotes) * 100)
+        : 0
 
-    const optionOneStyle = optionOnePercent > 0 ? { width: optionOnePercent + '%' } : { width: 10 + '%' }
-    const optionTwoStyle = optionTwoPercent > 0 ? { width: optionTwoPercent + '%' } : { width: 10 + '%' }
+    const optionOneStyle =
+      optionOnePercent > 0
+        ? { width: optionOnePercent + '%' }
+        : { width: 10 + '%' }
+    const optionTwoStyle =
+      optionTwoPercent > 0
+        ? { width: optionTwoPercent + '%' }
+        : { width: 10 + '%' }
 
-    let questionOneText, questionTwoText = ''
+    let questionOneText,
+      questionTwoText = ''
 
     optionOneVotes.includes(UserID) === true
-      ? questionOneText = '<-- Your Answer!'
-      : questionOneText = ''
+      ? (questionOneText = '<-- Your Answer!')
+      : (questionOneText = '')
 
     optionTwoVotes.includes(UserID) === true
-      ? questionTwoText = '<-- Your Answer!'
-      : questionTwoText = ''
+      ? (questionTwoText = '<-- Your Answer!')
+      : (questionTwoText = '')
 
     return (
       <div className="question-container">
@@ -57,21 +70,32 @@ class Poll extends Component {
             <span className="option-header">Results:</span>
 
             <span className="option-text">
-              <p className="option-text-poll">{`... ${optionOneText} ?`}<span className="question-text">{` ${questionOneText}`}</span></p>
+              <p className="option-text-poll">
+                {`... ${optionOneText} ?`}
+                <span className="question-text">{` ${questionOneText}`}</span>
+              </p>
               <p>{`${optionOneVotesTotal} out of ${totalVotes} votes`}</p>
-              </span>
-              <div className="percent-bar">
-                <div className="percent-value" style={optionOneStyle}>{`${optionOnePercent} %`}</div>
-              </div>
+            </span>
+            <div className="percent-bar">
+              <div
+                className="percent-value"
+                style={optionOneStyle}
+              >{`${optionOnePercent} %`}</div>
+            </div>
 
             <span className="option-text">
-              <p className="option-text-poll">{`... ${optionTwoText} ?`}<span className="question-text">{` ${questionTwoText}`}</span></p>
+              <p className="option-text-poll">
+                {`... ${optionTwoText} ?`}
+                <span className="question-text">{` ${questionTwoText}`}</span>
+              </p>
               <p>{`${optionTwoVotesTotal} out of ${totalVotes} votes`}</p>
-              </span>
-              <div className="percent-bar">
-                <div className="percent-value" style={optionTwoStyle}>{`${optionTwoPercent} %`}</div>
-              </div>
-
+            </span>
+            <div className="percent-bar">
+              <div
+                className="percent-value"
+                style={optionTwoStyle}
+              >{`${optionTwoPercent} %`}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -89,4 +113,4 @@ function mapStateToProps({ authedUser, users, questions }, props) {
       : null,
   }
 }
-export default withRouter(connect(mapStateToProps)(Poll))
+export default connect(mapStateToProps)(Poll)

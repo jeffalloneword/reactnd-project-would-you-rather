@@ -60,4 +60,4 @@ function mapStateToProps({ authedUser, users, questions }, { id, showAnswered })
       : null,
   }
 }
-export default withRouter(connect(mapStateToProps)(Question))
+export default connect(mapStateToProps)(withRouter(Question))
