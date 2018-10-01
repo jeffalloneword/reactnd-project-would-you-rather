@@ -21,12 +21,12 @@ class NewQuestion extends Component {
     e.preventDefault()
 
     const { optionOneText, optionTwoText } = this.state
-    const { authedUser, dispatch } = this.props
+    const { userID, dispatch } = this.props
 
     dispatch(handleSaveNewQuestion({
       optionOneText,
       optionTwoText,
-      authedUser,
+      authedUser: userID,
     }))
 
 
@@ -39,9 +39,14 @@ class NewQuestion extends Component {
 
   render() {
     const { optionOneText, optionTwoText, toHome } = this.state
+    const { userID } = this.props
+
+    if (!userID) {
+      return <Redirect to="/signin" />
+    }
 
     if (toHome) {
-      return <Redirect to={`/`} />
+      return <Redirect to="/" />
     }
 
     return (
@@ -79,7 +84,7 @@ class NewQuestion extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    authedUser: authedUser.authedUser
+    userID: authedUser.authedUser
   }
 }
 

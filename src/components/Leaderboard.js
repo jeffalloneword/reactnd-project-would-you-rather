@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 class Leaderboard extends Component {
   render() {
-    const { users } = this.props
+    const { users, userID } = this.props
+
+    if (!userID) {
+      return <Redirect to="/signin" />
+    }
 
     const userIds = Object.keys(users)
     //.sort((a, b) => users[a].name.localeCompare(users[b].name))
@@ -62,7 +66,7 @@ class Leaderboard extends Component {
                       </div>
                     </div>
                   </div>
-                </li>      
+                </li>
             ))}
         </ul>
       </div>
@@ -70,9 +74,11 @@ class Leaderboard extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
+  const userID = authedUser.authedUser
   return {
     users: users,
+    userID: userID,
   }
 }
 

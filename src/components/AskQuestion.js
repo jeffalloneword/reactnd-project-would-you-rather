@@ -5,6 +5,7 @@ import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 import { handleAnswerQuestion } from '../actions/questions'
 import { handleAddUserAnswer } from '../actions/users'
+import { NotFound } from '../components/NotFound'
 
 class AskQuestion extends Component {
   state = {
@@ -48,15 +49,20 @@ class AskQuestion extends Component {
 
   render() {
 
-    const { question } = this.props
+    const { question, authedUser } = this.props
     const { chosenOption, toHome } = this.state
+    const UserID = authedUser.authedUser
+
+    if (!UserID) {
+      return <Redirect to="/signin" />
+    }
 
     if (toHome === true) {
       return <Redirect to={`/poll/${question.id}`} />
     }
 
     if (question === null) {
-      return <p>This Question doesn't exist.</p>
+      return <NotFound />
     }
 
 

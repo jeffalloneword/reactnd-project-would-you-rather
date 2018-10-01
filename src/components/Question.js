@@ -17,7 +17,7 @@ class Question extends Component {
   render() {
     const { question, showAnswered } = this.props
 
-    console.log('showAnswered', this.props.showAnswered)
+    //console.log('showAnswered', this.props.showAnswered)
 
     if (question === null) {
       return <p>This Question doesn't exist.</p>

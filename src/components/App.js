@@ -15,18 +15,16 @@ const pageAuth = {
   isAuthenticated: this.isLoggedIn,
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      pageAuth.isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/signin" />
-      )
-    }
-  />
-)
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route
+//     {...rest}
+//     render={(props) =>
+//       pageAuth.isAuthenticated
+//       ? <Component {...props} />
+//       : <Redirect to="/signin" />
+//     }
+//   />
+// )
 
 class App extends Component {
 
@@ -41,19 +39,15 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
-            <PrivateRoute exact path="/add" component={NewQuestion} />
-            <PrivateRoute exact path="/poll/:id" component={Poll} />
-            <PrivateRoute exact path="/askquestion/:id" component={AskQuestion} />
-            <PrivateRoute
-              exact
-              path="/askquestion/:id"
-              component={AskQuestion}
-            />
-            <Route exact path="/signin" component={Signin} />
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/leaderboard" component={Leaderboard} />
+            <Route path="/add" component={NewQuestion} />
+            <Route path="/poll/:id" component={Poll} />
+            <Route path="/askquestion/:id" component={AskQuestion} />
+            <Route path="/signin" component={Signin} />
             <Route component={NotFound} />
           </Switch>
+
         </div>
       </Router>
     )

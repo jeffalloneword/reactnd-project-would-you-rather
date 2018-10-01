@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import Question from './Question'
 import graypixel from '../images/dad7d7-pixel.png'
 
@@ -21,8 +21,11 @@ class Dashboard extends Component {
 
   render() {
 
-    const { unansweredQuestionIds, answeredQuestionIds } =  this.props
-    //console.log('dashboard-users: ', users)
+    const { unansweredQuestionIds, answeredQuestionIds, userID } =  this.props
+
+    if (!userID) {
+      return <Redirect to="/signin" />
+    }
 
     return (
       <div>
@@ -75,6 +78,7 @@ function mapStateToProps({ questions, authedUser }) {
     answeredQuestionIds: Object.keys(questions)
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
       .filter((q) => questions[q].optionTwo.votes.includes(userID) === true || questions[q].optionOne.votes.includes(userID) === true),
+    userID: userID,
   }
 }
 

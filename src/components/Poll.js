@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
+import { NotFound } from '../components/NotFound'
 
 class Poll extends Component {
   render() {
+    const UserID = this.props.authedUser.authedUser
     const { question } = this.props
 
+    if (!UserID) {
+      return <Redirect to="/signin" />
+    }
+
     if (question === null) {
-      return <p>This Question doesn't exist.</p>
+      return <NotFound />
     }
 
     const {
@@ -31,8 +37,6 @@ class Poll extends Component {
     const optionOneStyle = optionOnePercent > 0 ? { width: optionOnePercent + '%' } : { width: 10 + '%' }
     const optionTwoStyle = optionTwoPercent > 0 ? { width: optionTwoPercent + '%' } : { width: 10 + '%' }
 
-
-    const UserID = this.props.authedUser.authedUser
     let questionOneText, questionTwoText = ''
 
     optionOneVotes.includes(UserID) === true
@@ -42,11 +46,6 @@ class Poll extends Component {
     optionTwoVotes.includes(UserID) === true
       ? questionTwoText = '<-- Your Answer!'
       : questionTwoText = ''
-
-    //console.log('authedUserPoll', optionOneVotes.includes(UserID), questionOneText, optionTwoVotes.includes(UserID), questionTwoText)
-    //console.log('i just came from askquestion')
-
-    //console.log('one,two', optionOneStyle, optionTwoPercent)
 
     return (
       <div className="question-container">

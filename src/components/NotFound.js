@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-class NotFound extends Component {
+export class NotFound extends Component {
   render() {
+    console.log('notfounduser', this.props.authedUser, this.props.users)
     return (
     <div>
       <h1 className='center'>404 - Page Not Found!</h1>
@@ -11,8 +13,12 @@ class NotFound extends Component {
   }
 };
 
-const mapStateToProps = ({ authedUser }) => ({
-  authedUser
-});
+function mapStateToProps({ authedUser, users }) {
+  return {
+    users,
+    authedUser,
+  }
+}
 
-export default connect(mapStateToProps)(NotFound);
+
+export default withRouter(connect(mapStateToProps)(NotFound))

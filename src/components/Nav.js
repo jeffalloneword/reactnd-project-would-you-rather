@@ -27,7 +27,7 @@ class Nav extends Component {
   render () {
 
     const { user } = this.props
-    //console.log('userID-render: ', userID)
+    console.log('nav-user-render: ', user)
 
     let navbarUserName = user ? `Hello, ${user.name}` : '-->'
 
@@ -36,17 +36,17 @@ class Nav extends Component {
         <div>
           <ul>
             <li>
-              <NavLink to={user ? "/" : "/signin"} exact activeClassName="active">
+              <NavLink to={user ? "/" : "/signin"} activeClassName="active">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to={user ? "/add" : "/signin"} exact activeClassName="active">
+              <NavLink to={user ? "/add" : "/signin"} activeClassName="active">
                 New Question
               </NavLink>
             </li>
             <li>
-              <NavLink to={user ? "/leaderboard" : "/signin"} exact activeClassName="active">
+              <NavLink to={user ? "/leaderboard" : "/signin"} activeClassName="active">
                 Leaderboard
               </NavLink>
             </li>
@@ -73,12 +73,13 @@ class Nav extends Component {
 }
 
 function mapStateToProps({ authedUser, users }) {
-  //console.log('mstp-props: ', authedUser, users)
+  console.log('mstp-props: ', authedUser, users)
   let userID = authedUser.authedUser
   const user = users[userID]
   //console.log('user: ', user)
   return {
     user: user,
+    userID: userID,
   }
 }
 
