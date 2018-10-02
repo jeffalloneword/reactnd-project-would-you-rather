@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 import NoPageFound from '../NoPageFound'
+import Signin from './Signin'
 
 class Poll extends Component {
   render() {
@@ -15,7 +15,7 @@ class Poll extends Component {
     }
 
     if (!UserID) {
-      return <Redirect to="/signin" />
+      return <Signin />
     }
 
     const {

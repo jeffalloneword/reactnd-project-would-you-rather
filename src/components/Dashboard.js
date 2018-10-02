@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import Question from './Question'
 import graypixel from '../images/dad7d7-pixel.png'
+import Signin from './Signin'
 
 class Dashboard extends Component {
   state = {
@@ -22,7 +22,7 @@ class Dashboard extends Component {
     const { unansweredQuestionIds, answeredQuestionIds, userID } = this.props
 
     if (!userID) {
-      return <Redirect to="/signin" />
+      return <Signin />
     }
 
     return (

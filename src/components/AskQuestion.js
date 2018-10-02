@@ -6,6 +6,7 @@ import graypixel from '../images/dad7d7-pixel.png'
 import { handleAnswerQuestion } from '../actions/questions'
 import { handleAddUserAnswer } from '../actions/users'
 import NoPageFound from '../NoPageFound'
+import Signin from './Signin'
 
 class AskQuestion extends Component {
   state = {
@@ -60,7 +61,7 @@ class AskQuestion extends Component {
     }
 
     if (!UserID) {
-      return <Redirect to="/signin" />
+      return <Signin />
     }
 
     if (toHome === true) {

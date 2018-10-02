@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 import { withRouter } from 'react-router-dom'
+import NoPageFound from '../NoPageFound'
 
 class Question extends Component {
   state = {
@@ -26,8 +27,6 @@ class Question extends Component {
           showAnsweredQ: false,
           qid: id,
         }))
-    // ? this.props.history.push(`/questions/${id}`)
-    // : this.props.history.push(`/askquestion/${id}`)
   }
 
   render() {
@@ -46,7 +45,7 @@ class Question extends Component {
     }
 
     if (question === null) {
-      return <p>404 - Page Not Found!</p>
+      return <NoPageFound />
     }
 
     const { name, avatar, optionOneText, id } = question

@@ -93,8 +93,8 @@ class Signin extends Component {
   }
 }
 
-function mapStateToProps({ users }, props) {
-  console.log('props', props)
+function mapStateToProps({ users }) {
+  //console.log('props', props)
   return {
     users: users,
   }

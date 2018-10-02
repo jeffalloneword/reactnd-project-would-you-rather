@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleSaveNewQuestion } from '../actions/questions'
+import Signin from './Signin'
 
 class NewQuestion extends Component {
   state = {
@@ -43,7 +44,7 @@ class NewQuestion extends Component {
     const { userID } = this.props
 
     if (!userID) {
-      return <Redirect to="/signin" />
+      return <Signin />
     }
 
     if (toHome) {
