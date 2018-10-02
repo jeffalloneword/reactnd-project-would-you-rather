@@ -23,12 +23,13 @@ class NewQuestion extends Component {
     const { optionOneText, optionTwoText } = this.state
     const { userID, dispatch } = this.props
 
-    dispatch(handleSaveNewQuestion({
-      optionOneText,
-      optionTwoText,
-      authedUser: userID,
-    }))
-
+    dispatch(
+      handleSaveNewQuestion({
+        optionOneText,
+        optionTwoText,
+        authedUser: userID,
+      }),
+    )
 
     this.setState(() => ({
       optionOneText: '',
@@ -82,9 +83,13 @@ class NewQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser }, props) {
+  const prevLocation = props.location.pathname ? props.location.pathname : '/'
+  console.log('add-props', prevLocation)
+
   return {
-    userID: authedUser.authedUser
+    prevLocation: prevLocation,
+    userID: authedUser.authedUser,
   }
 }
 

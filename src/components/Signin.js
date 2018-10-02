@@ -21,7 +21,6 @@ class Signin extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const { id } = this.state
-    //console.log('loginUserID: ', id)
     const { dispatch } = this.props
 
     dispatch(handleSetAuthedUser(id))
@@ -35,12 +34,11 @@ class Signin extends Component {
   render() {
     const { users } = this.props
     const { toHome } = this.state
-    //const { from } = this.props.location.state || { from: {pathname: "/" } };
 
-    //console.log('from: ', from, this.props.location.pathname)
+    console.log('toHome: ', toHome)
 
     if (toHome) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />
     }
 
     const userIds = Object.keys(users).sort((a, b) =>
@@ -56,8 +54,6 @@ class Signin extends Component {
         image: { avatar: true, src: users[id].avatarURL },
       }),
     )
-
-    //console.log('options: ', options)
 
     return (
       <div>
@@ -97,7 +93,8 @@ class Signin extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users }, props) {
+  console.log('props', props)
   return {
     users: users,
   }

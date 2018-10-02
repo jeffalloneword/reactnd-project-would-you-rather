@@ -5,7 +5,6 @@ import Signin from './components/Signin'
 export class NoPageFound extends Component {
   render() {
     const { user } = this.props
-    //console.log('NoPageFounduser', user)
 
     if (!user) {
       return <Signin />
@@ -13,8 +12,7 @@ export class NoPageFound extends Component {
 
     return (
       <div>
-              <h1 className="center">404 - Page Not Found!</h1>
-           {' '}
+        <h1 className="center">404 - Page Not Found!</h1>
       </div>
     )
   }

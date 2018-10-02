@@ -4,28 +4,17 @@ import { connect } from 'react-redux'
 import { handleSetAuthedUser } from '../actions/authedUser'
 
 class Nav extends Component {
-  state = {
-    isSignedIn: false,
-  }
-
   handleSignInOut = () => {
-    const { dispatch, history, user } = this.props
-    //console.log('handleSignOut: ', user, history)
-
+    const { dispatch, user } = this.props
     if (user) {
       dispatch(handleSetAuthedUser(''))
-      this.setState(() => ({
-        isSignedIn: false,
-      }))
-      history.push('/')
     }
   }
 
   render() {
     const { user } = this.props
-    //console.log('nav-user-render: ', user, history, user === true)
 
-    let navbarUserName = user ? `Hello, ${user.name}` : '-->'
+    let navbarUserName = user ? `Hello, ${user.name}` : ''
 
     return (
       <nav className="nav">
@@ -53,8 +42,8 @@ class Nav extends Component {
           <ul>
             <li>{navbarUserName}</li>
             <li>
-              <NavLink to="/signin" exact onClick={this.handleSignInOut}>
-                {navbarUserName !== '-->' ? 'Sign Out' : 'Sign In'}
+              <NavLink to="/" exact onClick={this.handleSignInOut}>
+                {navbarUserName !== '' ? 'Sign Out' : ''}
               </NavLink>
             </li>
           </ul>
