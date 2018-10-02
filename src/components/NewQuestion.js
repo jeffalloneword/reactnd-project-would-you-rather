@@ -84,11 +84,8 @@ class NewQuestion extends Component {
 }
 
 function mapStateToProps({ authedUser }, props) {
-  const prevLocation = props.location.pathname ? props.location.pathname : '/'
-  console.log('add-props', prevLocation)
-
   return {
-    prevLocation: prevLocation,
+    props,
     userID: authedUser.authedUser,
   }
 }

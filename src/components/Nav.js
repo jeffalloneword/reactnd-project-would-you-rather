@@ -22,17 +22,17 @@ class Nav extends Component {
           <ul>
             <li>
               <NavLink to="/" activeClassName="active">
-                Home
+                {navbarUserName !== '' ? 'Home' : ''}
               </NavLink>
             </li>
             <li>
               <NavLink to="/add" activeClassName="active">
-                New Question
+                {navbarUserName !== '' ? 'New Question' : ''}
               </NavLink>
             </li>
             <li>
               <NavLink to="/leaderboard" activeClassName="active">
-                Leaderboard
+                {navbarUserName !== '' ? 'Leaderboard' : ''}
               </NavLink>
             </li>
           </ul>
