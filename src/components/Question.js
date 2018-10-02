@@ -1,26 +1,52 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { formatQuestion } from '../utils/helpers'
 import graypixel from '../images/dad7d7-pixel.png'
 import { withRouter } from 'react-router-dom'
 
 class Question extends Component {
+  state = {
+    showPoll: false,
+    showAnsweredQ: false,
+    qid: '',
+  }
 
   showDetails = (e, id, showAnswered) => {
     e.preventDefault()
+    //console.log('showDetails: ', showAnswered)
     showAnswered
-      ? this.props.history.push(`/poll/${id}`)
-      : this.props.history.push(`/askquestion/${id}`)
+      ? this.setState(() => ({
+          showPoll: true,
+          showAnsweredQ: true,
+          qid: id,
+        }))
+      : this.setState(() => ({
+          showPoll: true,
+          showAnsweredQ: false,
+          qid: id,
+        }))
+    // ? this.props.history.push(`/questions/${id}`)
+    // : this.props.history.push(`/askquestion/${id}`)
   }
-
 
   render() {
     const { question, showAnswered } = this.props
+    const { qid, showAnsweredQ, showPoll } = this.state
 
-    //console.log('showAnswered', this.props.showAnswered)
+    if (showPoll) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/questions/${qid}`,
+            state: { showAnswered: showAnsweredQ },
+          }}
+        />
+      )
+    }
 
     if (question === null) {
-      return <p>This Question doesn't exist.</p>
+      return <p>404 - Page Not Found!</p>
     }
 
     const { name, avatar, optionOneText, id } = question
@@ -39,8 +65,9 @@ class Question extends Component {
             <div className="question-right">
               <button
                 className="question semi-square"
-                onClick={(e) => this.showDetails(e, id, showAnswered)}>
-                { showAnswered ? `Show Poll` : `Answer This` }
+                onClick={e => this.showDetails(e, id, showAnswered)}
+              >
+                {showAnswered ? `Show Poll` : `Answer This`}
               </button>
             </div>
           </div>
@@ -50,7 +77,10 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id, showAnswered }) {
+function mapStateToProps(
+  { authedUser, users, questions },
+  { id, showAnswered },
+) {
   const question = questions[id]
 
   return {

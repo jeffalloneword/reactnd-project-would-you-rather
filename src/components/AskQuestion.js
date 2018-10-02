@@ -64,7 +64,14 @@ class AskQuestion extends Component {
     }
 
     if (toHome === true) {
-      return <Redirect to={`/poll/${question.id}`} />
+      return (
+        <Redirect
+          to={{
+            pathname: `/questions/${question.id}`,
+            state: { showAnswered: true },
+          }}
+        />
+      )
     }
 
     const isEnabled = chosenOption.length > 0
@@ -125,7 +132,7 @@ class AskQuestion extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, props) {
-  const { id } = props.match.params
+  const { id } = props
   const question = questions[id]
   return {
     authedUser,
