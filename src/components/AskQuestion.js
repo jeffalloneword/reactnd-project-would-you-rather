@@ -9,7 +9,7 @@ class AskQuestion extends Component {
     const { question } = this.props
 
     if (question === null) {
-      return <p>This Question doesn't exist.</p>
+      return <p>This Question does not exist.</p>
     }
 
     const { name, avatar, optionOneText, optionTwoText } = question
